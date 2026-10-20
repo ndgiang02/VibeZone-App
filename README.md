@@ -1,4 +1,4 @@
-# sonix
+# VibeZone
 
 A project.
 

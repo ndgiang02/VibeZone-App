@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -507,6 +508,436 @@ class S {
   /// `Cancel`
   String get txt_cancel {
     return Intl.message('Cancel', name: 'txt_cancel', desc: '', args: []);
+  }
+
+  /// `Trending`
+  String get tab_trending {
+    return Intl.message('Trending', name: 'tab_trending', desc: '', args: []);
+  }
+
+  /// `Good morning`
+  String get txt_good_morning {
+    return Intl.message(
+      'Good morning',
+      name: 'txt_good_morning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Good afternoon`
+  String get txt_good_afternoon {
+    return Intl.message(
+      'Good afternoon',
+      name: 'txt_good_afternoon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Good evening`
+  String get txt_good_evening {
+    return Intl.message(
+      'Good evening',
+      name: 'txt_good_evening',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What do you want to listen to today?`
+  String get txt_what_to_listen {
+    return Intl.message(
+      'What do you want to listen to today?',
+      name: 'txt_what_to_listen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All`
+  String get genre_all {
+    return Intl.message('All', name: 'genre_all', desc: '', args: []);
+  }
+
+  /// `Trending now`
+  String get title_trending_now {
+    return Intl.message(
+      'Trending now',
+      name: 'title_trending_now',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Popular songs`
+  String get title_popular_songs {
+    return Intl.message(
+      'Popular songs',
+      name: 'title_popular_songs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Playlists`
+  String get title_playlists {
+    return Intl.message(
+      'Playlists',
+      name: 'title_playlists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Top artists`
+  String get title_top_artists {
+    return Intl.message(
+      'Top artists',
+      name: 'title_top_artists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recently played`
+  String get title_recently_played {
+    return Intl.message(
+      'Recently played',
+      name: 'title_recently_played',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `songs`
+  String get txt_songs {
+    return Intl.message('songs', name: 'txt_songs', desc: '', args: []);
+  }
+
+  /// `followers`
+  String get txt_followers {
+    return Intl.message('followers', name: 'txt_followers', desc: '', args: []);
+  }
+
+  /// `Featured`
+  String get txt_featured {
+    return Intl.message('Featured', name: 'txt_featured', desc: '', args: []);
+  }
+
+  /// `Trending`
+  String get title_trending {
+    return Intl.message('Trending', name: 'title_trending', desc: '', args: []);
+  }
+
+  /// `The hottest tracks right now`
+  String get txt_trending_subtitle {
+    return Intl.message(
+      'The hottest tracks right now',
+      name: 'txt_trending_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Today`
+  String get period_today {
+    return Intl.message('Today', name: 'period_today', desc: '', args: []);
+  }
+
+  /// `This week`
+  String get period_week {
+    return Intl.message('This week', name: 'period_week', desc: '', args: []);
+  }
+
+  /// `This month`
+  String get period_month {
+    return Intl.message('This month', name: 'period_month', desc: '', args: []);
+  }
+
+  /// `Play all`
+  String get btn_play_all {
+    return Intl.message('Play all', name: 'btn_play_all', desc: '', args: []);
+  }
+
+  /// `plays`
+  String get txt_plays {
+    return Intl.message('plays', name: 'txt_plays', desc: '', args: []);
+  }
+
+  /// `NEW`
+  String get txt_new {
+    return Intl.message('NEW', name: 'txt_new', desc: '', args: []);
+  }
+
+  /// `Songs, artists, genres`
+  String get hint_search {
+    return Intl.message(
+      'Songs, artists, genres',
+      name: 'hint_search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent searches`
+  String get title_recent_searches {
+    return Intl.message(
+      'Recent searches',
+      name: 'title_recent_searches',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clear all`
+  String get btn_clear_all {
+    return Intl.message('Clear all', name: 'btn_clear_all', desc: '', args: []);
+  }
+
+  /// `Browse all`
+  String get title_browse_all {
+    return Intl.message(
+      'Browse all',
+      name: 'title_browse_all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Songs`
+  String get title_songs {
+    return Intl.message('Songs', name: 'title_songs', desc: '', args: []);
+  }
+
+  /// `No results found`
+  String get txt_no_results {
+    return Intl.message(
+      'No results found',
+      name: 'txt_no_results',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try searching with another keyword`
+  String get txt_try_another_keyword {
+    return Intl.message(
+      'Try searching with another keyword',
+      name: 'txt_try_another_keyword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get btn_retry {
+    return Intl.message('Retry', name: 'btn_retry', desc: '', args: []);
+  }
+
+  /// `Are you sure you want to log out?`
+  String get mgs_logout_confirm {
+    return Intl.message(
+      'Are you sure you want to log out?',
+      name: 'mgs_logout_confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm password`
+  String get hint_confirm_password {
+    return Intl.message(
+      'Confirm password',
+      name: 'hint_confirm_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your name`
+  String get err_name_required {
+    return Intl.message(
+      'Please enter your name',
+      name: 'err_name_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwords do not match`
+  String get err_password_not_match {
+    return Intl.message(
+      'Passwords do not match',
+      name: 'err_password_not_match',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I agree to the Terms & Privacy Policy`
+  String get txt_agree_terms {
+    return Intl.message(
+      'I agree to the Terms & Privacy Policy',
+      name: 'txt_agree_terms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please accept the terms to continue`
+  String get err_agree_terms {
+    return Intl.message(
+      'Please accept the terms to continue',
+      name: 'err_agree_terms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Join VibeZone and enjoy millions of songs`
+  String get txt_signup_subtitle {
+    return Intl.message(
+      'Join VibeZone and enjoy millions of songs',
+      name: 'txt_signup_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account created! Please sign in.`
+  String get msg_signup_success {
+    return Intl.message(
+      'Account created! Please sign in.',
+      name: 'msg_signup_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot password`
+  String get title_forgot_password {
+    return Intl.message(
+      'Forgot password',
+      name: 'title_forgot_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the email linked to your account and we will send you a link to reset your password.`
+  String get txt_forgot_password_desc {
+    return Intl.message(
+      'Enter the email linked to your account and we will send you a link to reset your password.',
+      name: 'txt_forgot_password_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send reset link`
+  String get btn_send_reset_link {
+    return Intl.message(
+      'Send reset link',
+      name: 'btn_send_reset_link',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check your email`
+  String get title_check_your_email {
+    return Intl.message(
+      'Check your email',
+      name: 'title_check_your_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We have sent a password reset link to`
+  String get txt_reset_link_sent {
+    return Intl.message(
+      'We have sent a password reset link to',
+      name: 'txt_reset_link_sent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to login`
+  String get btn_back_to_login {
+    return Intl.message(
+      'Back to login',
+      name: 'btn_back_to_login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend`
+  String get btn_resend {
+    return Intl.message('Resend', name: 'btn_resend', desc: '', args: []);
+  }
+
+  /// `Didn't receive the email? `
+  String get txt_didnt_receive {
+    return Intl.message(
+      'Didn\'t receive the email? ',
+      name: 'txt_didnt_receive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account`
+  String get title_account {
+    return Intl.message('Account', name: 'title_account', desc: '', args: []);
+  }
+
+  /// `Preferences`
+  String get title_preferences {
+    return Intl.message(
+      'Preferences',
+      name: 'title_preferences',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Support`
+  String get title_support {
+    return Intl.message('Support', name: 'title_support', desc: '', args: []);
+  }
+
+  /// `Profile`
+  String get title_profile {
+    return Intl.message('Profile', name: 'title_profile', desc: '', args: []);
+  }
+
+  /// `Member since`
+  String get txt_member_since {
+    return Intl.message(
+      'Member since',
+      name: 'txt_member_since',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select language`
+  String get title_select_language {
+    return Intl.message(
+      'Select language',
+      name: 'title_select_language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Version`
+  String get txt_version {
+    return Intl.message('Version', name: 'txt_version', desc: '', args: []);
   }
 }
 

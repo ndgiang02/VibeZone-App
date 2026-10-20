@@ -1,5 +1,5 @@
-import 'package:sonix/core/common/enums/dialog_type.dart';
-import 'package:sonix/core/common/enums/sheet_type.dart';
+import 'package:vibezone/core/common/enums/dialog_type.dart';
+import 'package:vibezone/core/common/enums/sheet_type.dart';
 
 abstract class PageCommand {}
 

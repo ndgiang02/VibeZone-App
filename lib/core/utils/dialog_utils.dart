@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sonix/core/common/widgets/loading.dart';
-import 'package:sonix/main.dart';
+import 'package:vibezone/core/common/widgets/loading.dart';
+import 'package:vibezone/main.dart';
 
 class DialogUtils {
   static void loading() {

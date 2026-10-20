@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:sonix/core/configs/constants/constant.dart';
+import 'package:vibezone/core/configs/constants/constant.dart';
 
-ThemeData themeData(BuildContext context) {
+ThemeData themeData(BuildContext context, Brightness brightness) {
+  final isDark = brightness == Brightness.dark;
+  final bgColor = isDark ? background : const Color(0xFFFFFFFF);
+
   return ThemeData(
     fontFamily: 'SF-Pro-Display',
+    brightness: brightness,
     colorScheme: ColorScheme.fromSeed(
       seedColor: const Color(0xFFA8D64A),
+      brightness: brightness,
       primary: const Color(0xFFA8D64A),
       error: const Color(0xFFE21221).withValues(alpha: 0.7),
     ),
     useMaterial3: true,
-    textTheme: textTheme(),
-    dividerTheme: const DividerThemeData(color: Color(0xFFEEEEEE)),
-    scaffoldBackgroundColor: Color(0xFFFFFFFF),
+    textTheme: textTheme(isDark: isDark),
+    dividerTheme: DividerThemeData(
+      color: isDark ? const Color(0xFF333333) : const Color(0xFFEEEEEE),
+    ),
+    scaffoldBackgroundColor: bgColor,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
-      backgroundColor: background,
+      backgroundColor: bgColor,
       selectedItemColor: const Color(0xFFA8D64A),
       unselectedItemColor: Color(0xff9E9E9E),
       unselectedLabelStyle: Theme.of(
@@ -28,8 +35,8 @@ ThemeData themeData(BuildContext context) {
     ),
     appBarTheme: AppBarTheme(
       scrolledUnderElevation: 0,
-      backgroundColor: Color(0xFFFFFFFF),
-      titleTextStyle: Theme.of(context).textTheme.titleLarge,
+      backgroundColor: bgColor,
+      titleTextStyle: textTheme(isDark: isDark).titleLarge,
     ),
     inputDecorationTheme: inputDecorationTheme(),
   );
@@ -72,44 +79,48 @@ InputDecorationTheme inputDecorationTheme() {
   );
 }
 
-TextTheme textTheme() {
-  return const TextTheme(
+TextTheme textTheme({bool isDark = false}) {
+  final baseColor = isDark ? Colors.white : Colors.black;
+  final bodyColor = isDark ? Colors.white70 : Colors.black87;
+  final subColor = isDark ? Colors.white54 : Colors.black54;
+
+  return TextTheme(
     displayLarge: TextStyle(
       fontSize: 32,
       fontWeight: FontWeight.bold,
-      color: Colors.black,
+      color: baseColor,
     ),
     displayMedium: TextStyle(
       fontSize: 28,
       fontWeight: FontWeight.bold,
-      color: Colors.black,
+      color: baseColor,
     ),
     displaySmall: TextStyle(
       fontSize: 24,
       fontWeight: FontWeight.bold,
-      color: Colors.black,
+      color: baseColor,
     ),
 
     // Body text styles
-    bodyLarge: TextStyle(fontSize: 16, color: Colors.black87, height: 1.5),
-    bodyMedium: TextStyle(fontSize: 14, color: Colors.black87, height: 1.5),
-    bodySmall: TextStyle(fontSize: 12, color: Colors.black54, height: 1.5),
+    bodyLarge: TextStyle(fontSize: 16, color: bodyColor, height: 1.5),
+    bodyMedium: TextStyle(fontSize: 14, color: bodyColor, height: 1.5),
+    bodySmall: TextStyle(fontSize: 12, color: subColor, height: 1.5),
 
     // Title styles
     titleLarge: TextStyle(
       fontSize: 20,
       fontWeight: FontWeight.w600,
-      color: Colors.black,
+      color: baseColor,
     ),
     titleMedium: TextStyle(
       fontSize: 18,
       fontWeight: FontWeight.w500,
-      color: Colors.black,
+      color: baseColor,
     ),
     titleSmall: TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w500,
-      color: Colors.black,
+      color: baseColor,
     ),
 
     // Label styles

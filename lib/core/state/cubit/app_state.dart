@@ -4,6 +4,8 @@ part of 'app_cubit.dart';
 abstract class AppState with _$AppState {
   const AppState._();
 
-  const factory AppState({@Default(LanguageLocale.en) Locale locale}) =
-      _AppState;
+  const factory AppState({
+    @Default(LanguageLocale.en) Locale locale,
+    @Default(ThemeMode.system) ThemeMode themeMode,
+  }) = _AppState;
 }

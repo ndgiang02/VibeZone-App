@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:sonix/features/data/models/user/user_model.dart';
+import 'package:vibezone/features/auth/data/models/user/user_model.dart';
 
 import 'local_storage.dart';
 
@@ -30,10 +30,18 @@ class SessionController {
     }
   }
 
+  Future<void> clearRememberMe() async {
+    try {
+      await localStorage.clearValue('email');
+    } catch (e) {
+      log("Error clearing remember me: $e");
+    }
+  }
+
   Future<String> getRememberMe() async {
     try {
-      var email = await localStorage.readValue('email');
-      return email;
+      final email = await localStorage.readValue('email');
+      return email ?? '';
     } catch (e) {
       log("Error saving remembe me: $e");
       return '';
@@ -61,7 +69,7 @@ class SessionController {
         _instance.user = UserModel.fromJson(jsonDecode(userData));
         _instance.isLogin = (loginStatus == 'true');
       } else {
-        _instance.isLogin = (loginStatus == 'false');
+        _instance.isLogin = false;
       }
     } catch (e) {
       log("Error in getUserFromPreference: $e");

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sonix/core/configs/constants/constant.dart';
-import 'package:sonix/core/utils/responsive.dart';
+import 'package:vibezone/core/configs/constants/constant.dart';
+import 'package:vibezone/core/utils/responsive.dart';
 
 class CustomButton extends StatelessWidget {
   final Widget? icon;
@@ -29,7 +29,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: Responsive.width(60, context),
+      width: Responsive.clampWidth(60, context, min: 200, max: 360),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
@@ -37,10 +37,9 @@ class CustomButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(32),
           ),
           backgroundColor: backgroundColor,
-          side:
-              showBorder
-                  ? BorderSide(color: primary, width: 3)
-                  : BorderSide.none,
+          side: showBorder
+              ? BorderSide(color: primary, width: 3)
+              : BorderSide.none,
         ),
         onPressed: () => enable ? action.call() : null,
         child: Row(

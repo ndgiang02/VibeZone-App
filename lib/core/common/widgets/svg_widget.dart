@@ -22,8 +22,9 @@ class SvgWidget extends StatelessWidget {
       width: width,
       height: height,
       fit: BoxFit.scaleDown,
-      colorFilter:
-          color != null ? ColorFilter.mode(color!, BlendMode.srcIn) : null,
+      colorFilter: color != null
+          ? ColorFilter.mode(color!, BlendMode.srcIn)
+          : null,
     );
   }
 }

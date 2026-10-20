@@ -5,8 +5,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sonix/core/configs/constants/language_code.dart';
-import 'package:sonix/core/storage/session_controller.dart';
+import 'package:vibezone/core/configs/constants/language_code.dart';
+import 'package:vibezone/core/storage/session_controller.dart';
 
 part 'app_cubit.freezed.dart';
 part 'app_state.dart';
@@ -42,5 +42,24 @@ class AppCubit extends Cubit<AppState> {
     final localeStr = locale.toString();
     await _session.localStorage.setValue('locale', localeStr);
     emit(state.copyWith(locale: locale));
+  }
+
+  Future<void> getThemeMode() async {
+    try {
+      final themeStr = await _session.localStorage.readValue('theme_mode');
+      final themeMode = ThemeMode.values.firstWhere(
+        (item) => item.name == themeStr,
+        orElse: () => ThemeMode.system,
+      );
+      emit(state.copyWith(themeMode: themeMode));
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<void> changeThemeMode(bool isDark) async {
+    final themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
+    await _session.localStorage.setValue('theme_mode', themeMode.name);
+    emit(state.copyWith(themeMode: themeMode));
   }
 }

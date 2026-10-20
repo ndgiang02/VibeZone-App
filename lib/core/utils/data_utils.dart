@@ -1,4 +1,4 @@
-import 'package:sonix/features/data/models/language/language.dart';
+import '../../features/auth/data/models/language/language.dart';
 
 List<Language> languages = [
   Language(name: 'Việt Nam', code: 'vi_VN'),
