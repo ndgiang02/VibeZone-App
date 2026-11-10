@@ -55,7 +55,7 @@ extension PlayEventPatterns on PlayEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _PlayPause value)?  playPause,TResult Function( _Next value)?  next,TResult Function( _Previous value)?  previous,TResult Function( _Seek value)?  seek,TResult Function( _ToggleShuffle value)?  toggleShuffle,TResult Function( _ToggleRepeat value)?  toggleRepeat,TResult Function( _ToggleFavorite value)?  toggleFavorite,TResult Function( _PlaySong value)?  playSong,TResult Function( _Stop value)?  stop,TResult Function( _UpdatePosition value)?  updatePosition,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _PlayPause value)?  playPause,TResult Function( _Next value)?  next,TResult Function( _Previous value)?  previous,TResult Function( _Seek value)?  seek,TResult Function( _ToggleShuffle value)?  toggleShuffle,TResult Function( _ToggleRepeat value)?  toggleRepeat,TResult Function( _ToggleFavorite value)?  toggleFavorite,TResult Function( _PlaySong value)?  playSong,TResult Function( _Stop value)?  stop,TResult Function( _UpdatePosition value)?  updatePosition,TResult Function( _DurationChanged value)?  durationChanged,TResult Function( _PlayerStateChanged value)?  playerStateChanged,TResult Function( _PlaybackFailed value)?  playbackFailed,TResult Function( _WaveformLoaded value)?  waveformLoaded,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _PlayPause() when playPause != null:
@@ -68,7 +68,11 @@ return toggleRepeat(_that);case _ToggleFavorite() when toggleFavorite != null:
 return toggleFavorite(_that);case _PlaySong() when playSong != null:
 return playSong(_that);case _Stop() when stop != null:
 return stop(_that);case _UpdatePosition() when updatePosition != null:
-return updatePosition(_that);case _:
+return updatePosition(_that);case _DurationChanged() when durationChanged != null:
+return durationChanged(_that);case _PlayerStateChanged() when playerStateChanged != null:
+return playerStateChanged(_that);case _PlaybackFailed() when playbackFailed != null:
+return playbackFailed(_that);case _WaveformLoaded() when waveformLoaded != null:
+return waveformLoaded(_that);case _:
   return orElse();
 
 }
@@ -86,7 +90,7 @@ return updatePosition(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _PlayPause value)  playPause,required TResult Function( _Next value)  next,required TResult Function( _Previous value)  previous,required TResult Function( _Seek value)  seek,required TResult Function( _ToggleShuffle value)  toggleShuffle,required TResult Function( _ToggleRepeat value)  toggleRepeat,required TResult Function( _ToggleFavorite value)  toggleFavorite,required TResult Function( _PlaySong value)  playSong,required TResult Function( _Stop value)  stop,required TResult Function( _UpdatePosition value)  updatePosition,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _PlayPause value)  playPause,required TResult Function( _Next value)  next,required TResult Function( _Previous value)  previous,required TResult Function( _Seek value)  seek,required TResult Function( _ToggleShuffle value)  toggleShuffle,required TResult Function( _ToggleRepeat value)  toggleRepeat,required TResult Function( _ToggleFavorite value)  toggleFavorite,required TResult Function( _PlaySong value)  playSong,required TResult Function( _Stop value)  stop,required TResult Function( _UpdatePosition value)  updatePosition,required TResult Function( _DurationChanged value)  durationChanged,required TResult Function( _PlayerStateChanged value)  playerStateChanged,required TResult Function( _PlaybackFailed value)  playbackFailed,required TResult Function( _WaveformLoaded value)  waveformLoaded,}){
 final _that = this;
 switch (_that) {
 case _PlayPause():
@@ -99,7 +103,11 @@ return toggleRepeat(_that);case _ToggleFavorite():
 return toggleFavorite(_that);case _PlaySong():
 return playSong(_that);case _Stop():
 return stop(_that);case _UpdatePosition():
-return updatePosition(_that);case _:
+return updatePosition(_that);case _DurationChanged():
+return durationChanged(_that);case _PlayerStateChanged():
+return playerStateChanged(_that);case _PlaybackFailed():
+return playbackFailed(_that);case _WaveformLoaded():
+return waveformLoaded(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -116,7 +124,7 @@ return updatePosition(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _PlayPause value)?  playPause,TResult? Function( _Next value)?  next,TResult? Function( _Previous value)?  previous,TResult? Function( _Seek value)?  seek,TResult? Function( _ToggleShuffle value)?  toggleShuffle,TResult? Function( _ToggleRepeat value)?  toggleRepeat,TResult? Function( _ToggleFavorite value)?  toggleFavorite,TResult? Function( _PlaySong value)?  playSong,TResult? Function( _Stop value)?  stop,TResult? Function( _UpdatePosition value)?  updatePosition,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _PlayPause value)?  playPause,TResult? Function( _Next value)?  next,TResult? Function( _Previous value)?  previous,TResult? Function( _Seek value)?  seek,TResult? Function( _ToggleShuffle value)?  toggleShuffle,TResult? Function( _ToggleRepeat value)?  toggleRepeat,TResult? Function( _ToggleFavorite value)?  toggleFavorite,TResult? Function( _PlaySong value)?  playSong,TResult? Function( _Stop value)?  stop,TResult? Function( _UpdatePosition value)?  updatePosition,TResult? Function( _DurationChanged value)?  durationChanged,TResult? Function( _PlayerStateChanged value)?  playerStateChanged,TResult? Function( _PlaybackFailed value)?  playbackFailed,TResult? Function( _WaveformLoaded value)?  waveformLoaded,}){
 final _that = this;
 switch (_that) {
 case _PlayPause() when playPause != null:
@@ -129,7 +137,11 @@ return toggleRepeat(_that);case _ToggleFavorite() when toggleFavorite != null:
 return toggleFavorite(_that);case _PlaySong() when playSong != null:
 return playSong(_that);case _Stop() when stop != null:
 return stop(_that);case _UpdatePosition() when updatePosition != null:
-return updatePosition(_that);case _:
+return updatePosition(_that);case _DurationChanged() when durationChanged != null:
+return durationChanged(_that);case _PlayerStateChanged() when playerStateChanged != null:
+return playerStateChanged(_that);case _PlaybackFailed() when playbackFailed != null:
+return playbackFailed(_that);case _WaveformLoaded() when waveformLoaded != null:
+return waveformLoaded(_that);case _:
   return null;
 
 }
@@ -146,7 +158,7 @@ return updatePosition(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  playPause,TResult Function()?  next,TResult Function()?  previous,TResult Function( double position)?  seek,TResult Function()?  toggleShuffle,TResult Function()?  toggleRepeat,TResult Function()?  toggleFavorite,TResult Function( Song song,  List<Song> queue)?  playSong,TResult Function()?  stop,TResult Function( double position)?  updatePosition,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  playPause,TResult Function()?  next,TResult Function()?  previous,TResult Function( double position)?  seek,TResult Function()?  toggleShuffle,TResult Function()?  toggleRepeat,TResult Function()?  toggleFavorite,TResult Function( Song song,  List<Song> queue)?  playSong,TResult Function()?  stop,TResult Function( double position)?  updatePosition,TResult Function( double duration)?  durationChanged,TResult Function( bool playing,  bool buffering,  bool completed)?  playerStateChanged,TResult Function()?  playbackFailed,TResult Function( String songId,  List<double> peaks)?  waveformLoaded,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PlayPause() when playPause != null:
 return playPause();case _Next() when next != null:
@@ -158,7 +170,11 @@ return toggleRepeat();case _ToggleFavorite() when toggleFavorite != null:
 return toggleFavorite();case _PlaySong() when playSong != null:
 return playSong(_that.song,_that.queue);case _Stop() when stop != null:
 return stop();case _UpdatePosition() when updatePosition != null:
-return updatePosition(_that.position);case _:
+return updatePosition(_that.position);case _DurationChanged() when durationChanged != null:
+return durationChanged(_that.duration);case _PlayerStateChanged() when playerStateChanged != null:
+return playerStateChanged(_that.playing,_that.buffering,_that.completed);case _PlaybackFailed() when playbackFailed != null:
+return playbackFailed();case _WaveformLoaded() when waveformLoaded != null:
+return waveformLoaded(_that.songId,_that.peaks);case _:
   return orElse();
 
 }
@@ -176,7 +192,7 @@ return updatePosition(_that.position);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  playPause,required TResult Function()  next,required TResult Function()  previous,required TResult Function( double position)  seek,required TResult Function()  toggleShuffle,required TResult Function()  toggleRepeat,required TResult Function()  toggleFavorite,required TResult Function( Song song,  List<Song> queue)  playSong,required TResult Function()  stop,required TResult Function( double position)  updatePosition,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  playPause,required TResult Function()  next,required TResult Function()  previous,required TResult Function( double position)  seek,required TResult Function()  toggleShuffle,required TResult Function()  toggleRepeat,required TResult Function()  toggleFavorite,required TResult Function( Song song,  List<Song> queue)  playSong,required TResult Function()  stop,required TResult Function( double position)  updatePosition,required TResult Function( double duration)  durationChanged,required TResult Function( bool playing,  bool buffering,  bool completed)  playerStateChanged,required TResult Function()  playbackFailed,required TResult Function( String songId,  List<double> peaks)  waveformLoaded,}) {final _that = this;
 switch (_that) {
 case _PlayPause():
 return playPause();case _Next():
@@ -188,7 +204,11 @@ return toggleRepeat();case _ToggleFavorite():
 return toggleFavorite();case _PlaySong():
 return playSong(_that.song,_that.queue);case _Stop():
 return stop();case _UpdatePosition():
-return updatePosition(_that.position);case _:
+return updatePosition(_that.position);case _DurationChanged():
+return durationChanged(_that.duration);case _PlayerStateChanged():
+return playerStateChanged(_that.playing,_that.buffering,_that.completed);case _PlaybackFailed():
+return playbackFailed();case _WaveformLoaded():
+return waveformLoaded(_that.songId,_that.peaks);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -205,7 +225,7 @@ return updatePosition(_that.position);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  playPause,TResult? Function()?  next,TResult? Function()?  previous,TResult? Function( double position)?  seek,TResult? Function()?  toggleShuffle,TResult? Function()?  toggleRepeat,TResult? Function()?  toggleFavorite,TResult? Function( Song song,  List<Song> queue)?  playSong,TResult? Function()?  stop,TResult? Function( double position)?  updatePosition,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  playPause,TResult? Function()?  next,TResult? Function()?  previous,TResult? Function( double position)?  seek,TResult? Function()?  toggleShuffle,TResult? Function()?  toggleRepeat,TResult? Function()?  toggleFavorite,TResult? Function( Song song,  List<Song> queue)?  playSong,TResult? Function()?  stop,TResult? Function( double position)?  updatePosition,TResult? Function( double duration)?  durationChanged,TResult? Function( bool playing,  bool buffering,  bool completed)?  playerStateChanged,TResult? Function()?  playbackFailed,TResult? Function( String songId,  List<double> peaks)?  waveformLoaded,}) {final _that = this;
 switch (_that) {
 case _PlayPause() when playPause != null:
 return playPause();case _Next() when next != null:
@@ -217,7 +237,11 @@ return toggleRepeat();case _ToggleFavorite() when toggleFavorite != null:
 return toggleFavorite();case _PlaySong() when playSong != null:
 return playSong(_that.song,_that.queue);case _Stop() when stop != null:
 return stop();case _UpdatePosition() when updatePosition != null:
-return updatePosition(_that.position);case _:
+return updatePosition(_that.position);case _DurationChanged() when durationChanged != null:
+return durationChanged(_that.duration);case _PlayerStateChanged() when playerStateChanged != null:
+return playerStateChanged(_that.playing,_that.buffering,_that.completed);case _PlaybackFailed() when playbackFailed != null:
+return playbackFailed();case _WaveformLoaded() when waveformLoaded != null:
+return waveformLoaded(_that.songId,_that.peaks);case _:
   return null;
 
 }
@@ -656,9 +680,252 @@ as double,
 }
 
 /// @nodoc
+
+
+class _DurationChanged implements PlayEvent {
+  const _DurationChanged(this.duration);
+  
+
+ final  double duration;
+
+/// Create a copy of PlayEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$DurationChangedCopyWith<_DurationChanged> get copyWith => __$DurationChangedCopyWithImpl<_DurationChanged>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DurationChanged&&(identical(other.duration, duration) || other.duration == duration));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,duration);
+
+@override
+String toString() {
+  return 'PlayEvent.durationChanged(duration: $duration)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$DurationChangedCopyWith<$Res> implements $PlayEventCopyWith<$Res> {
+  factory _$DurationChangedCopyWith(_DurationChanged value, $Res Function(_DurationChanged) _then) = __$DurationChangedCopyWithImpl;
+@useResult
+$Res call({
+ double duration
+});
+
+
+
+
+}
+/// @nodoc
+class __$DurationChangedCopyWithImpl<$Res>
+    implements _$DurationChangedCopyWith<$Res> {
+  __$DurationChangedCopyWithImpl(this._self, this._then);
+
+  final _DurationChanged _self;
+  final $Res Function(_DurationChanged) _then;
+
+/// Create a copy of PlayEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? duration = null,}) {
+  return _then(_DurationChanged(
+null == duration ? _self.duration : duration // ignore: cast_nullable_to_non_nullable
+as double,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _PlayerStateChanged implements PlayEvent {
+  const _PlayerStateChanged({required this.playing, required this.buffering, required this.completed});
+  
+
+ final  bool playing;
+ final  bool buffering;
+ final  bool completed;
+
+/// Create a copy of PlayEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PlayerStateChangedCopyWith<_PlayerStateChanged> get copyWith => __$PlayerStateChangedCopyWithImpl<_PlayerStateChanged>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PlayerStateChanged&&(identical(other.playing, playing) || other.playing == playing)&&(identical(other.buffering, buffering) || other.buffering == buffering)&&(identical(other.completed, completed) || other.completed == completed));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,playing,buffering,completed);
+
+@override
+String toString() {
+  return 'PlayEvent.playerStateChanged(playing: $playing, buffering: $buffering, completed: $completed)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$PlayerStateChangedCopyWith<$Res> implements $PlayEventCopyWith<$Res> {
+  factory _$PlayerStateChangedCopyWith(_PlayerStateChanged value, $Res Function(_PlayerStateChanged) _then) = __$PlayerStateChangedCopyWithImpl;
+@useResult
+$Res call({
+ bool playing, bool buffering, bool completed
+});
+
+
+
+
+}
+/// @nodoc
+class __$PlayerStateChangedCopyWithImpl<$Res>
+    implements _$PlayerStateChangedCopyWith<$Res> {
+  __$PlayerStateChangedCopyWithImpl(this._self, this._then);
+
+  final _PlayerStateChanged _self;
+  final $Res Function(_PlayerStateChanged) _then;
+
+/// Create a copy of PlayEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? playing = null,Object? buffering = null,Object? completed = null,}) {
+  return _then(_PlayerStateChanged(
+playing: null == playing ? _self.playing : playing // ignore: cast_nullable_to_non_nullable
+as bool,buffering: null == buffering ? _self.buffering : buffering // ignore: cast_nullable_to_non_nullable
+as bool,completed: null == completed ? _self.completed : completed // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _PlaybackFailed implements PlayEvent {
+  const _PlaybackFailed();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PlaybackFailed);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'PlayEvent.playbackFailed()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _WaveformLoaded implements PlayEvent {
+  const _WaveformLoaded(this.songId, final  List<double> peaks): _peaks = peaks;
+  
+
+ final  String songId;
+ final  List<double> _peaks;
+ List<double> get peaks {
+  if (_peaks is EqualUnmodifiableListView) return _peaks;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_peaks);
+}
+
+
+/// Create a copy of PlayEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$WaveformLoadedCopyWith<_WaveformLoaded> get copyWith => __$WaveformLoadedCopyWithImpl<_WaveformLoaded>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WaveformLoaded&&(identical(other.songId, songId) || other.songId == songId)&&const DeepCollectionEquality().equals(other._peaks, _peaks));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,songId,const DeepCollectionEquality().hash(_peaks));
+
+@override
+String toString() {
+  return 'PlayEvent.waveformLoaded(songId: $songId, peaks: $peaks)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$WaveformLoadedCopyWith<$Res> implements $PlayEventCopyWith<$Res> {
+  factory _$WaveformLoadedCopyWith(_WaveformLoaded value, $Res Function(_WaveformLoaded) _then) = __$WaveformLoadedCopyWithImpl;
+@useResult
+$Res call({
+ String songId, List<double> peaks
+});
+
+
+
+
+}
+/// @nodoc
+class __$WaveformLoadedCopyWithImpl<$Res>
+    implements _$WaveformLoadedCopyWith<$Res> {
+  __$WaveformLoadedCopyWithImpl(this._self, this._then);
+
+  final _WaveformLoaded _self;
+  final $Res Function(_WaveformLoaded) _then;
+
+/// Create a copy of PlayEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? songId = null,Object? peaks = null,}) {
+  return _then(_WaveformLoaded(
+null == songId ? _self.songId : songId // ignore: cast_nullable_to_non_nullable
+as String,null == peaks ? _self._peaks : peaks // ignore: cast_nullable_to_non_nullable
+as List<double>,
+  ));
+}
+
+
+}
+
+/// @nodoc
 mixin _$PlayState {
 
- bool get isPlaying; bool get isLoading; double get currentPosition; double get totalDuration; bool get isShuffle; bool get isRepeat; bool get isFavorite; Song? get song; List<Song> get queue; String? get error;
+ bool get isPlaying; bool get isLoading; double get currentPosition; double get totalDuration; bool get isShuffle; bool get isRepeat; bool get isFavorite; Song? get song; List<Song> get queue;/// Peaks of the current song's audio; empty until loaded or unavailable.
+ List<double> get waveform; String? get error;
 /// Create a copy of PlayState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -669,16 +936,16 @@ $PlayStateCopyWith<PlayState> get copyWith => _$PlayStateCopyWithImpl<PlayState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PlayState&&(identical(other.isPlaying, isPlaying) || other.isPlaying == isPlaying)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.currentPosition, currentPosition) || other.currentPosition == currentPosition)&&(identical(other.totalDuration, totalDuration) || other.totalDuration == totalDuration)&&(identical(other.isShuffle, isShuffle) || other.isShuffle == isShuffle)&&(identical(other.isRepeat, isRepeat) || other.isRepeat == isRepeat)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite)&&(identical(other.song, song) || other.song == song)&&const DeepCollectionEquality().equals(other.queue, queue)&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PlayState&&(identical(other.isPlaying, isPlaying) || other.isPlaying == isPlaying)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.currentPosition, currentPosition) || other.currentPosition == currentPosition)&&(identical(other.totalDuration, totalDuration) || other.totalDuration == totalDuration)&&(identical(other.isShuffle, isShuffle) || other.isShuffle == isShuffle)&&(identical(other.isRepeat, isRepeat) || other.isRepeat == isRepeat)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite)&&(identical(other.song, song) || other.song == song)&&const DeepCollectionEquality().equals(other.queue, queue)&&const DeepCollectionEquality().equals(other.waveform, waveform)&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isPlaying,isLoading,currentPosition,totalDuration,isShuffle,isRepeat,isFavorite,song,const DeepCollectionEquality().hash(queue),error);
+int get hashCode => Object.hash(runtimeType,isPlaying,isLoading,currentPosition,totalDuration,isShuffle,isRepeat,isFavorite,song,const DeepCollectionEquality().hash(queue),const DeepCollectionEquality().hash(waveform),error);
 
 @override
 String toString() {
-  return 'PlayState(isPlaying: $isPlaying, isLoading: $isLoading, currentPosition: $currentPosition, totalDuration: $totalDuration, isShuffle: $isShuffle, isRepeat: $isRepeat, isFavorite: $isFavorite, song: $song, queue: $queue, error: $error)';
+  return 'PlayState(isPlaying: $isPlaying, isLoading: $isLoading, currentPosition: $currentPosition, totalDuration: $totalDuration, isShuffle: $isShuffle, isRepeat: $isRepeat, isFavorite: $isFavorite, song: $song, queue: $queue, waveform: $waveform, error: $error)';
 }
 
 
@@ -689,7 +956,7 @@ abstract mixin class $PlayStateCopyWith<$Res>  {
   factory $PlayStateCopyWith(PlayState value, $Res Function(PlayState) _then) = _$PlayStateCopyWithImpl;
 @useResult
 $Res call({
- bool isPlaying, bool isLoading, double currentPosition, double totalDuration, bool isShuffle, bool isRepeat, bool isFavorite, Song? song, List<Song> queue, String? error
+ bool isPlaying, bool isLoading, double currentPosition, double totalDuration, bool isShuffle, bool isRepeat, bool isFavorite, Song? song, List<Song> queue, List<double> waveform, String? error
 });
 
 
@@ -706,7 +973,7 @@ class _$PlayStateCopyWithImpl<$Res>
 
 /// Create a copy of PlayState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isPlaying = null,Object? isLoading = null,Object? currentPosition = null,Object? totalDuration = null,Object? isShuffle = null,Object? isRepeat = null,Object? isFavorite = null,Object? song = freezed,Object? queue = null,Object? error = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isPlaying = null,Object? isLoading = null,Object? currentPosition = null,Object? totalDuration = null,Object? isShuffle = null,Object? isRepeat = null,Object? isFavorite = null,Object? song = freezed,Object? queue = null,Object? waveform = null,Object? error = freezed,}) {
   return _then(_self.copyWith(
 isPlaying: null == isPlaying ? _self.isPlaying : isPlaying // ignore: cast_nullable_to_non_nullable
 as bool,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
@@ -717,7 +984,8 @@ as bool,isRepeat: null == isRepeat ? _self.isRepeat : isRepeat // ignore: cast_n
 as bool,isFavorite: null == isFavorite ? _self.isFavorite : isFavorite // ignore: cast_nullable_to_non_nullable
 as bool,song: freezed == song ? _self.song : song // ignore: cast_nullable_to_non_nullable
 as Song?,queue: null == queue ? _self.queue : queue // ignore: cast_nullable_to_non_nullable
-as List<Song>,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as List<Song>,waveform: null == waveform ? _self.waveform : waveform // ignore: cast_nullable_to_non_nullable
+as List<double>,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -803,10 +1071,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isPlaying,  bool isLoading,  double currentPosition,  double totalDuration,  bool isShuffle,  bool isRepeat,  bool isFavorite,  Song? song,  List<Song> queue,  String? error)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isPlaying,  bool isLoading,  double currentPosition,  double totalDuration,  bool isShuffle,  bool isRepeat,  bool isFavorite,  Song? song,  List<Song> queue,  List<double> waveform,  String? error)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PlayState() when $default != null:
-return $default(_that.isPlaying,_that.isLoading,_that.currentPosition,_that.totalDuration,_that.isShuffle,_that.isRepeat,_that.isFavorite,_that.song,_that.queue,_that.error);case _:
+return $default(_that.isPlaying,_that.isLoading,_that.currentPosition,_that.totalDuration,_that.isShuffle,_that.isRepeat,_that.isFavorite,_that.song,_that.queue,_that.waveform,_that.error);case _:
   return orElse();
 
 }
@@ -824,10 +1092,10 @@ return $default(_that.isPlaying,_that.isLoading,_that.currentPosition,_that.tota
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isPlaying,  bool isLoading,  double currentPosition,  double totalDuration,  bool isShuffle,  bool isRepeat,  bool isFavorite,  Song? song,  List<Song> queue,  String? error)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isPlaying,  bool isLoading,  double currentPosition,  double totalDuration,  bool isShuffle,  bool isRepeat,  bool isFavorite,  Song? song,  List<Song> queue,  List<double> waveform,  String? error)  $default,) {final _that = this;
 switch (_that) {
 case _PlayState():
-return $default(_that.isPlaying,_that.isLoading,_that.currentPosition,_that.totalDuration,_that.isShuffle,_that.isRepeat,_that.isFavorite,_that.song,_that.queue,_that.error);case _:
+return $default(_that.isPlaying,_that.isLoading,_that.currentPosition,_that.totalDuration,_that.isShuffle,_that.isRepeat,_that.isFavorite,_that.song,_that.queue,_that.waveform,_that.error);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -844,10 +1112,10 @@ return $default(_that.isPlaying,_that.isLoading,_that.currentPosition,_that.tota
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isPlaying,  bool isLoading,  double currentPosition,  double totalDuration,  bool isShuffle,  bool isRepeat,  bool isFavorite,  Song? song,  List<Song> queue,  String? error)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isPlaying,  bool isLoading,  double currentPosition,  double totalDuration,  bool isShuffle,  bool isRepeat,  bool isFavorite,  Song? song,  List<Song> queue,  List<double> waveform,  String? error)?  $default,) {final _that = this;
 switch (_that) {
 case _PlayState() when $default != null:
-return $default(_that.isPlaying,_that.isLoading,_that.currentPosition,_that.totalDuration,_that.isShuffle,_that.isRepeat,_that.isFavorite,_that.song,_that.queue,_that.error);case _:
+return $default(_that.isPlaying,_that.isLoading,_that.currentPosition,_that.totalDuration,_that.isShuffle,_that.isRepeat,_that.isFavorite,_that.song,_that.queue,_that.waveform,_that.error);case _:
   return null;
 
 }
@@ -859,7 +1127,7 @@ return $default(_that.isPlaying,_that.isLoading,_that.currentPosition,_that.tota
 
 
 class _PlayState extends PlayState {
-  const _PlayState({this.isPlaying = false, this.isLoading = false, this.currentPosition = 0.0, this.totalDuration = 1.0, this.isShuffle = false, this.isRepeat = false, this.isFavorite = false, this.song, final  List<Song> queue = const <Song>[], this.error}): _queue = queue,super._();
+  const _PlayState({this.isPlaying = false, this.isLoading = false, this.currentPosition = 0.0, this.totalDuration = 1.0, this.isShuffle = false, this.isRepeat = false, this.isFavorite = false, this.song, final  List<Song> queue = const <Song>[], final  List<double> waveform = const <double>[], this.error}): _queue = queue,_waveform = waveform,super._();
   
 
 @override@JsonKey() final  bool isPlaying;
@@ -877,6 +1145,15 @@ class _PlayState extends PlayState {
   return EqualUnmodifiableListView(_queue);
 }
 
+/// Peaks of the current song's audio; empty until loaded or unavailable.
+ final  List<double> _waveform;
+/// Peaks of the current song's audio; empty until loaded or unavailable.
+@override@JsonKey() List<double> get waveform {
+  if (_waveform is EqualUnmodifiableListView) return _waveform;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_waveform);
+}
+
 @override final  String? error;
 
 /// Create a copy of PlayState
@@ -889,16 +1166,16 @@ _$PlayStateCopyWith<_PlayState> get copyWith => __$PlayStateCopyWithImpl<_PlaySt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PlayState&&(identical(other.isPlaying, isPlaying) || other.isPlaying == isPlaying)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.currentPosition, currentPosition) || other.currentPosition == currentPosition)&&(identical(other.totalDuration, totalDuration) || other.totalDuration == totalDuration)&&(identical(other.isShuffle, isShuffle) || other.isShuffle == isShuffle)&&(identical(other.isRepeat, isRepeat) || other.isRepeat == isRepeat)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite)&&(identical(other.song, song) || other.song == song)&&const DeepCollectionEquality().equals(other._queue, _queue)&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PlayState&&(identical(other.isPlaying, isPlaying) || other.isPlaying == isPlaying)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.currentPosition, currentPosition) || other.currentPosition == currentPosition)&&(identical(other.totalDuration, totalDuration) || other.totalDuration == totalDuration)&&(identical(other.isShuffle, isShuffle) || other.isShuffle == isShuffle)&&(identical(other.isRepeat, isRepeat) || other.isRepeat == isRepeat)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite)&&(identical(other.song, song) || other.song == song)&&const DeepCollectionEquality().equals(other._queue, _queue)&&const DeepCollectionEquality().equals(other._waveform, _waveform)&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isPlaying,isLoading,currentPosition,totalDuration,isShuffle,isRepeat,isFavorite,song,const DeepCollectionEquality().hash(_queue),error);
+int get hashCode => Object.hash(runtimeType,isPlaying,isLoading,currentPosition,totalDuration,isShuffle,isRepeat,isFavorite,song,const DeepCollectionEquality().hash(_queue),const DeepCollectionEquality().hash(_waveform),error);
 
 @override
 String toString() {
-  return 'PlayState(isPlaying: $isPlaying, isLoading: $isLoading, currentPosition: $currentPosition, totalDuration: $totalDuration, isShuffle: $isShuffle, isRepeat: $isRepeat, isFavorite: $isFavorite, song: $song, queue: $queue, error: $error)';
+  return 'PlayState(isPlaying: $isPlaying, isLoading: $isLoading, currentPosition: $currentPosition, totalDuration: $totalDuration, isShuffle: $isShuffle, isRepeat: $isRepeat, isFavorite: $isFavorite, song: $song, queue: $queue, waveform: $waveform, error: $error)';
 }
 
 
@@ -909,7 +1186,7 @@ abstract mixin class _$PlayStateCopyWith<$Res> implements $PlayStateCopyWith<$Re
   factory _$PlayStateCopyWith(_PlayState value, $Res Function(_PlayState) _then) = __$PlayStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isPlaying, bool isLoading, double currentPosition, double totalDuration, bool isShuffle, bool isRepeat, bool isFavorite, Song? song, List<Song> queue, String? error
+ bool isPlaying, bool isLoading, double currentPosition, double totalDuration, bool isShuffle, bool isRepeat, bool isFavorite, Song? song, List<Song> queue, List<double> waveform, String? error
 });
 
 
@@ -926,7 +1203,7 @@ class __$PlayStateCopyWithImpl<$Res>
 
 /// Create a copy of PlayState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isPlaying = null,Object? isLoading = null,Object? currentPosition = null,Object? totalDuration = null,Object? isShuffle = null,Object? isRepeat = null,Object? isFavorite = null,Object? song = freezed,Object? queue = null,Object? error = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isPlaying = null,Object? isLoading = null,Object? currentPosition = null,Object? totalDuration = null,Object? isShuffle = null,Object? isRepeat = null,Object? isFavorite = null,Object? song = freezed,Object? queue = null,Object? waveform = null,Object? error = freezed,}) {
   return _then(_PlayState(
 isPlaying: null == isPlaying ? _self.isPlaying : isPlaying // ignore: cast_nullable_to_non_nullable
 as bool,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
@@ -937,7 +1214,8 @@ as bool,isRepeat: null == isRepeat ? _self.isRepeat : isRepeat // ignore: cast_n
 as bool,isFavorite: null == isFavorite ? _self.isFavorite : isFavorite // ignore: cast_nullable_to_non_nullable
 as bool,song: freezed == song ? _self.song : song // ignore: cast_nullable_to_non_nullable
 as Song?,queue: null == queue ? _self._queue : queue // ignore: cast_nullable_to_non_nullable
-as List<Song>,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as List<Song>,waveform: null == waveform ? _self._waveform : waveform // ignore: cast_nullable_to_non_nullable
+as List<double>,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

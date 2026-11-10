@@ -465,6 +465,36 @@ class S {
     );
   }
 
+  /// `Please confirm your email first. Check your inbox for the verification link.`
+  String get err_email_not_confirmed {
+    return Intl.message(
+      'Please confirm your email first. Check your inbox for the verification link.',
+      name: 'err_email_not_confirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cannot connect to the server. Please check your connection.`
+  String get err_network_connection {
+    return Intl.message(
+      'Cannot connect to the server. Please check your connection.',
+      name: 'err_network_connection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Too many attempts. Please try again in a minute.`
+  String get err_too_many_requests {
+    return Intl.message(
+      'Too many attempts. Please try again in a minute.',
+      name: 'err_too_many_requests',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Verify your email`
   String get title_verify_your_email {
     return Intl.message(
@@ -630,11 +660,21 @@ class S {
     return Intl.message('Trending', name: 'title_trending', desc: '', args: []);
   }
 
-  /// `The hottest tracks right now`
+  /// `Top tracks of the last 7 days`
   String get txt_trending_subtitle {
     return Intl.message(
-      'The hottest tracks right now',
+      'Top tracks of the last 7 days',
       name: 'txt_trending_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No trending tracks yet`
+  String get txt_trending_empty {
+    return Intl.message(
+      'No trending tracks yet',
+      name: 'txt_trending_empty',
       desc: '',
       args: [],
     );
@@ -938,6 +978,586 @@ class S {
   /// `Version`
   String get txt_version {
     return Intl.message('Version', name: 'txt_version', desc: '', args: []);
+  }
+
+  /// `Upload a track`
+  String get label_menu_upload {
+    return Intl.message(
+      'Upload a track',
+      name: 'label_menu_upload',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Display name`
+  String get hint_display_name {
+    return Intl.message(
+      'Display name',
+      name: 'hint_display_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile updated`
+  String get msg_profile_updated {
+    return Intl.message(
+      'Profile updated',
+      name: 'msg_profile_updated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose from library`
+  String get btn_choose_photo {
+    return Intl.message(
+      'Choose from library',
+      name: 'btn_choose_photo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Take a photo`
+  String get btn_take_photo {
+    return Intl.message(
+      'Take a photo',
+      name: 'btn_take_photo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove photo`
+  String get btn_remove_photo {
+    return Intl.message(
+      'Remove photo',
+      name: 'btn_remove_photo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile picture updated`
+  String get msg_avatar_updated {
+    return Intl.message(
+      'Profile picture updated',
+      name: 'msg_avatar_updated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change password`
+  String get title_change_password {
+    return Intl.message(
+      'Change password',
+      name: 'title_change_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current password`
+  String get hint_current_password {
+    return Intl.message(
+      'Current password',
+      name: 'hint_current_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New password`
+  String get hint_new_password {
+    return Intl.message(
+      'New password',
+      name: 'hint_new_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password changed. Your other devices were signed out.`
+  String get msg_password_changed {
+    return Intl.message(
+      'Password changed. Your other devices were signed out.',
+      name: 'msg_password_changed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Signed-in devices`
+  String get title_signed_in_devices {
+    return Intl.message(
+      'Signed-in devices',
+      name: 'title_signed_in_devices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This device`
+  String get txt_this_device {
+    return Intl.message(
+      'This device',
+      name: 'txt_this_device',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last active`
+  String get txt_last_active {
+    return Intl.message(
+      'Last active',
+      name: 'txt_last_active',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign out`
+  String get btn_sign_out {
+    return Intl.message('Sign out', name: 'btn_sign_out', desc: '', args: []);
+  }
+
+  /// `Sign out all other devices`
+  String get btn_sign_out_other_devices {
+    return Intl.message(
+      'Sign out all other devices',
+      name: 'btn_sign_out_other_devices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign out every device except this one?`
+  String get mgs_sign_out_other_devices_confirm {
+    return Intl.message(
+      'Sign out every device except this one?',
+      name: 'mgs_sign_out_other_devices_confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Signed out {count} device(s)`
+  String msg_signed_out_devices(Object count) {
+    return Intl.message(
+      'Signed out $count device(s)',
+      name: 'msg_signed_out_devices',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `No other devices are signed in`
+  String get txt_no_other_devices {
+    return Intl.message(
+      'No other devices are signed in',
+      name: 'txt_no_other_devices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload track`
+  String get title_upload {
+    return Intl.message(
+      'Upload track',
+      name: 'title_upload',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create your artist profile`
+  String get title_become_artist {
+    return Intl.message(
+      'Create your artist profile',
+      name: 'title_become_artist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You need an artist profile to publish tracks.`
+  String get txt_become_artist_desc {
+    return Intl.message(
+      'You need an artist profile to publish tracks.',
+      name: 'txt_become_artist_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Artist name`
+  String get hint_artist_name {
+    return Intl.message(
+      'Artist name',
+      name: 'hint_artist_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile link (a-z, 0-9, _ or -)`
+  String get hint_artist_slug {
+    return Intl.message(
+      'Profile link (a-z, 0-9, _ or -)',
+      name: 'hint_artist_slug',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create artist profile`
+  String get btn_create_artist {
+    return Intl.message(
+      'Create artist profile',
+      name: 'btn_create_artist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Title`
+  String get hint_track_title {
+    return Intl.message('Title', name: 'hint_track_title', desc: '', args: []);
+  }
+
+  /// `Description (optional)`
+  String get hint_description {
+    return Intl.message(
+      'Description (optional)',
+      name: 'hint_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Genre`
+  String get label_genre {
+    return Intl.message('Genre', name: 'label_genre', desc: '', args: []);
+  }
+
+  /// `No genre`
+  String get txt_no_genre {
+    return Intl.message('No genre', name: 'txt_no_genre', desc: '', args: []);
+  }
+
+  /// `Visibility`
+  String get label_visibility {
+    return Intl.message(
+      'Visibility',
+      name: 'label_visibility',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Public`
+  String get txt_visibility_public {
+    return Intl.message(
+      'Public',
+      name: 'txt_visibility_public',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unlisted`
+  String get txt_visibility_unlisted {
+    return Intl.message(
+      'Unlisted',
+      name: 'txt_visibility_unlisted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Private`
+  String get txt_visibility_private {
+    return Intl.message(
+      'Private',
+      name: 'txt_visibility_private',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose cover`
+  String get btn_choose_cover {
+    return Intl.message(
+      'Choose cover',
+      name: 'btn_choose_cover',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose audio file`
+  String get btn_choose_audio {
+    return Intl.message(
+      'Choose audio file',
+      name: 'btn_choose_audio',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload`
+  String get btn_upload {
+    return Intl.message('Upload', name: 'btn_upload', desc: '', args: []);
+  }
+
+  /// `Uploading…`
+  String get txt_uploading {
+    return Intl.message(
+      'Uploading…',
+      name: 'txt_uploading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Processing audio…`
+  String get txt_processing {
+    return Intl.message(
+      'Processing audio…',
+      name: 'txt_processing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your track is ready!`
+  String get msg_upload_completed {
+    return Intl.message(
+      'Your track is ready!',
+      name: 'msg_upload_completed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We couldn't process this audio file.`
+  String get msg_upload_failed {
+    return Intl.message(
+      'We couldn\'t process this audio file.',
+      name: 'msg_upload_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload another`
+  String get btn_upload_another {
+    return Intl.message(
+      'Upload another',
+      name: 'btn_upload_another',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add to playlist`
+  String get title_add_to_playlist {
+    return Intl.message(
+      'Add to playlist',
+      name: 'title_add_to_playlist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New playlist`
+  String get btn_new_playlist {
+    return Intl.message(
+      'New playlist',
+      name: 'btn_new_playlist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Playlist name`
+  String get hint_playlist_title {
+    return Intl.message(
+      'Playlist name',
+      name: 'hint_playlist_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Public playlist`
+  String get txt_public_playlist {
+    return Intl.message(
+      'Public playlist',
+      name: 'txt_public_playlist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create`
+  String get btn_create {
+    return Intl.message('Create', name: 'btn_create', desc: '', args: []);
+  }
+
+  /// `You have no playlists yet`
+  String get txt_no_playlists {
+    return Intl.message(
+      'You have no playlists yet',
+      name: 'txt_no_playlists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a title`
+  String get err_title_required {
+    return Intl.message(
+      'Please enter a title',
+      name: 'err_title_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `3–30 characters: a-z, 0-9, _ or -`
+  String get err_slug_invalid {
+    return Intl.message(
+      '3–30 characters: a-z, 0-9, _ or -',
+      name: 'err_slug_invalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This profile link is already taken`
+  String get err_slug_taken {
+    return Intl.message(
+      'This profile link is already taken',
+      name: 'err_slug_taken',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This image can't be used. Choose a JPEG, PNG or WebP.`
+  String get err_image_invalid {
+    return Intl.message(
+      'This image can\'t be used. Choose a JPEG, PNG or WebP.',
+      name: 'err_image_invalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The image must be at least 200×200 px.`
+  String get err_image_too_small {
+    return Intl.message(
+      'The image must be at least 200×200 px.',
+      name: 'err_image_too_small',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The image must be 10 MB or smaller.`
+  String get err_image_too_large {
+    return Intl.message(
+      'The image must be 10 MB or smaller.',
+      name: 'err_image_too_large',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your current password is incorrect`
+  String get err_current_password_wrong {
+    return Intl.message(
+      'Your current password is incorrect',
+      name: 'err_current_password_wrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The password is too long`
+  String get err_password_too_long {
+    return Intl.message(
+      'The password is too long',
+      name: 'err_password_too_long',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please choose an audio file`
+  String get err_audio_required {
+    return Intl.message(
+      'Please choose an audio file',
+      name: 'err_audio_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unsupported file. Use MP3, WAV, FLAC, AAC, M4A, OGG or Opus.`
+  String get err_unsupported_file_type {
+    return Intl.message(
+      'Unsupported file. Use MP3, WAV, FLAC, AAC, M4A, OGG or Opus.',
+      name: 'err_unsupported_file_type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The audio file must be 200 MB or smaller.`
+  String get err_file_too_large {
+    return Intl.message(
+      'The audio file must be 200 MB or smaller.',
+      name: 'err_file_too_large',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You need an artist profile to upload tracks.`
+  String get err_artist_required {
+    return Intl.message(
+      'You need an artist profile to upload tracks.',
+      name: 'err_artist_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This playlist is full (500 tracks).`
+  String get err_playlist_full {
+    return Intl.message(
+      'This playlist is full (500 tracks).',
+      name: 'err_playlist_full',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your password`
+  String get err_password_required {
+    return Intl.message(
+      'Please enter your password',
+      name: 'err_password_required',
+      desc: '',
+      args: [],
+    );
   }
 }
 

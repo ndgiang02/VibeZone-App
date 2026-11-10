@@ -16,5 +16,17 @@ class PlayEvent with _$PlayEvent {
     @Default(<Song>[]) List<Song> queue,
   }) = _PlaySong;
   const factory PlayEvent.stop() = _Stop;
+
+  // Reported by the audio player.
   const factory PlayEvent.updatePosition(double position) = _UpdatePosition;
+  const factory PlayEvent.durationChanged(double duration) = _DurationChanged;
+  const factory PlayEvent.playerStateChanged({
+    required bool playing,
+    required bool buffering,
+    required bool completed,
+  }) = _PlayerStateChanged;
+  const factory PlayEvent.playbackFailed() = _PlaybackFailed;
+
+  const factory PlayEvent.waveformLoaded(String songId, List<double> peaks) =
+      _WaveformLoaded;
 }

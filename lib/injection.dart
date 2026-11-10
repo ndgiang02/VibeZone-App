@@ -1,4 +1,7 @@
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
+import 'package:vibezone/core/network/api_client.dart';
+import 'package:vibezone/core/network/token_storage.dart';
 import 'package:vibezone/core/storage/local_storage.dart';
 import 'package:vibezone/core/storage/session_controller.dart';
 
@@ -21,8 +24,19 @@ import 'features/home/domain/usecases/get_home_data_usecase.dart';
 import 'features/home/presentation/bloc/home_bloc.dart';
 import 'features/main/presentation/bloc/main_bloc.dart';
 import 'features/miniplayer/presentation/cubit/miniplayer_cubit.dart';
+import 'features/player/data/datasources/player_remote_data_source.dart';
 import 'features/player/presentation/bloc/play_bloc.dart';
+import 'features/playlist/data/datasources/playlist_remote_data_source.dart';
+import 'features/playlist/data/repositories/playlist_repository_impl.dart';
+import 'features/playlist/domain/repositories/playlist_repository.dart';
+import 'features/playlist/domain/usecases/playlist_usecases.dart';
+import 'features/playlist/presentation/cubit/add_to_playlist_cubit.dart';
+import 'features/profile/data/datasources/account_remote_data_source.dart';
+import 'features/profile/data/repositories/account_repository_impl.dart';
+import 'features/profile/domain/repositories/account_repository.dart';
+import 'features/profile/domain/usecases/account_usecases.dart';
 import 'features/profile/presentation/bloc/profile_bloc.dart';
+import 'features/profile/presentation/security/cubit/security_cubit.dart';
 import 'features/search/data/datasources/search_local_data_source.dart';
 import 'features/search/data/datasources/search_remote_data_source.dart';
 import 'features/search/data/repositories/search_repository_impl.dart';
@@ -37,6 +51,12 @@ import 'features/trending/data/repositories/trending_repository_impl.dart';
 import 'features/trending/domain/repositories/trending_repository.dart';
 import 'features/trending/domain/usecases/get_trending_songs_usecase.dart';
 import 'features/trending/presentation/bloc/trending_bloc.dart';
+import 'features/upload/data/datasources/upload_remote_data_source.dart';
+import 'features/upload/data/repositories/upload_repository_impl.dart';
+import 'features/upload/domain/repositories/upload_repository.dart';
+import 'features/upload/domain/usecases/upload_usecases.dart';
+import 'features/upload/presentation/bloc/upload_bloc.dart';
+import 'main.dart';
 
 final getIt = GetIt.instance;
 
@@ -53,9 +73,16 @@ Future<void> setupLocator() async {
 
   getIt.registerLazySingleton(() => LocalStorage());
 
+  // Network
+  getIt.registerLazySingleton(() => TokenStorage(getIt()));
+  getIt.registerLazySingleton(
+    () =>
+        ApiClient.create(tokens: getIt(), onSessionExpired: _onSessionExpired),
+  );
+
   // Auth
   getIt.registerLazySingleton<AuthRemoteDataSource>(
-    () => AuthRemoteDataSourceMock(),
+    () => AuthRemoteDataSourceImpl(client: getIt(), tokens: getIt()),
   );
   getIt.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(remote: getIt(), session: getIt()),
@@ -68,7 +95,7 @@ Future<void> setupLocator() async {
 
   // Home
   getIt.registerLazySingleton<HomeRemoteDataSource>(
-    () => HomeRemoteDataSourceMock(),
+    () => HomeRemoteDataSourceImpl(getIt()),
   );
   getIt.registerLazySingleton<HomeRepository>(
     () => HomeRepositoryImpl(getIt()),
@@ -77,7 +104,7 @@ Future<void> setupLocator() async {
 
   // Trending
   getIt.registerLazySingleton<TrendingRemoteDataSource>(
-    () => TrendingRemoteDataSourceMock(),
+    () => TrendingRemoteDataSourceImpl(getIt()),
   );
   getIt.registerLazySingleton<TrendingRepository>(
     () => TrendingRepositoryImpl(getIt()),
@@ -86,7 +113,7 @@ Future<void> setupLocator() async {
 
   // Search
   getIt.registerLazySingleton<SearchRemoteDataSource>(
-    () => SearchRemoteDataSourceMock(),
+    () => SearchRemoteDataSourceImpl(getIt()),
   );
   getIt.registerLazySingleton<SearchLocalDataSource>(
     () => SearchLocalDataSourceImpl(getIt()),
@@ -101,6 +128,52 @@ Future<void> setupLocator() async {
   getIt.registerLazySingleton(() => RemoveRecentSearchUseCase(getIt()));
   getIt.registerLazySingleton(() => ClearRecentSearchesUseCase(getIt()));
 
+  // Player
+  getIt.registerLazySingleton<PlayerRemoteDataSource>(
+    () => PlayerRemoteDataSourceImpl(getIt()),
+  );
+
+  // Account
+  getIt.registerLazySingleton<AccountRemoteDataSource>(
+    () => AccountRemoteDataSourceImpl(getIt()),
+  );
+  getIt.registerLazySingleton<AccountRepository>(
+    () => AccountRepositoryImpl(remote: getIt(), session: getIt()),
+  );
+  getIt.registerLazySingleton(() => RefreshMeUseCase(getIt()));
+  getIt.registerLazySingleton(() => UpdateProfileUseCase(getIt()));
+  getIt.registerLazySingleton(() => ChangePasswordUseCase(getIt()));
+  getIt.registerLazySingleton(() => SetAvatarUseCase(getIt()));
+  getIt.registerLazySingleton(() => RemoveAvatarUseCase(getIt()));
+  getIt.registerLazySingleton(() => GetSessionsUseCase(getIt()));
+  getIt.registerLazySingleton(() => RevokeSessionUseCase(getIt()));
+  getIt.registerLazySingleton(() => RevokeOtherSessionsUseCase(getIt()));
+
+  // Upload
+  getIt.registerLazySingleton<UploadRemoteDataSource>(
+    () => UploadRemoteDataSourceImpl(getIt()),
+  );
+  getIt.registerLazySingleton<UploadRepository>(
+    () => UploadRepositoryImpl(getIt()),
+  );
+  getIt.registerLazySingleton(() => GetUploadGenresUseCase(getIt()));
+  getIt.registerLazySingleton(() => GetMyArtistUseCase(getIt()));
+  getIt.registerLazySingleton(() => BecomeArtistUseCase(getIt()));
+  getIt.registerLazySingleton(() => UploadTrackUseCase(getIt()));
+  getIt.registerLazySingleton(() => GetUploadStatusUseCase(getIt()));
+
+  // Playlists
+  getIt.registerLazySingleton<PlaylistRemoteDataSource>(
+    () => PlaylistRemoteDataSourceImpl(getIt()),
+  );
+  getIt.registerLazySingleton<PlaylistRepository>(
+    () => PlaylistRepositoryImpl(getIt()),
+  );
+  getIt.registerLazySingleton(() => GetMyPlaylistsUseCase(getIt()));
+  getIt.registerLazySingleton(() => CreatePlaylistUseCase(getIt()));
+  getIt.registerLazySingleton(() => AddTrackToPlaylistUseCase(getIt()));
+  getIt.registerLazySingleton(() => RemoveTrackFromPlaylistUseCase(getIt()));
+
   // Blocs
   getIt.registerFactory(() => SplashBloc());
 
@@ -112,7 +185,7 @@ Future<void> setupLocator() async {
 
   getIt.registerLazySingleton(() => MainBloc());
 
-  getIt.registerLazySingleton(() => PlayBloc());
+  getIt.registerLazySingleton(() => PlayBloc(getIt()));
 
   getIt.registerLazySingleton(() => MiniPlayerCubit());
 
@@ -124,7 +197,29 @@ Future<void> setupLocator() async {
     () => SearchBloc(getIt(), getIt(), getIt(), getIt(), getIt(), getIt()),
   );
 
-  getIt.registerFactory(() => ProfileBloc(getIt()));
+  getIt.registerFactory(
+    () => ProfileBloc(getIt(), getIt(), getIt(), getIt(), getIt()),
+  );
+
+  getIt.registerFactory(
+    () => SecurityCubit(getIt(), getIt(), getIt(), getIt()),
+  );
+
+  getIt.registerFactory(
+    () => UploadBloc(getIt(), getIt(), getIt(), getIt(), getIt()),
+  );
+
+  getIt.registerFactoryParam<AddToPlaylistCubit, String, void>(
+    (trackId, _) =>
+        AddToPlaylistCubit(trackId, getIt(), getIt(), getIt(), getIt()),
+  );
 
   await getIt.allReady();
+}
+
+/// The refresh token was rejected (expired, revoked, or the password changed):
+/// drop the local session and send the user back to the login screen.
+Future<void> _onSessionExpired() async {
+  await getIt<SessionController>().clearSession();
+  navigatorKey.currentContext?.go('/login');
 }

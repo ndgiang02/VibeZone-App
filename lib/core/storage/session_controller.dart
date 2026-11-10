@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:vibezone/core/network/token_storage.dart';
 import 'package:vibezone/features/auth/data/models/user/user_model.dart';
 
 import 'local_storage.dart';
@@ -13,12 +14,7 @@ class SessionController {
 
   bool isLogin = false;
   String email = '';
-  UserModel user = UserModel(
-    id: 0,
-    username: '',
-    email: '',
-    createdAt: DateTime.now(),
-  );
+  UserModel user = UserModel.empty();
 
   SessionController._internal();
 
@@ -48,9 +44,9 @@ class SessionController {
     }
   }
 
-  Future<void> saveUserInPreference(UserModel user, String token) async {
+  /// Tokens are kept by [TokenStorage]; this only stores the profile.
+  Future<void> saveUserInPreference(UserModel user) async {
     try {
-      await localStorage.setValue('token', token);
       await localStorage.setValue('user', jsonEncode(user.toJson()));
       await localStorage.setValue('isLogin', 'true');
       _instance.user = user;
@@ -64,10 +60,14 @@ class SessionController {
     try {
       var userData = await localStorage.readValue('user');
       var loginStatus = await localStorage.readValue('isLogin');
+      // Without a refresh token the session can't be resumed.
+      var refreshToken = await localStorage.readValue(
+        TokenStorage.refreshTokenKey,
+      );
 
       if (userData != null && userData.isNotEmpty) {
         _instance.user = UserModel.fromJson(jsonDecode(userData));
-        _instance.isLogin = (loginStatus == 'true');
+        _instance.isLogin = loginStatus == 'true' && refreshToken != null;
       } else {
         _instance.isLogin = false;
       }
@@ -78,7 +78,7 @@ class SessionController {
 
   Future<void> clearSession() async {
     try {
-      await localStorage.clearValue('token');
+      await localStorage.clearValue('user');
       await localStorage.clearValue('isLogin');
       _instance.user = UserModel.empty();
       _instance.isLogin = false;

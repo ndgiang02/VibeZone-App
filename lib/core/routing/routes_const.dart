@@ -5,3 +5,5 @@ const String welComeRoute = '/welcome-screen';
 const String loginRoute = '/login-screen';
 const String signUpRoute = '/sign-up-screen';
 const String forgotPassRoute = '/for-got-password-screen';
+const String uploadRoute = '/upload';
+const String securityRoute = '/security';

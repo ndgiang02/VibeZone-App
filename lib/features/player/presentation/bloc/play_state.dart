@@ -14,6 +14,9 @@ abstract class PlayState with _$PlayState {
     @Default(false) bool isFavorite,
     Song? song,
     @Default(<Song>[]) List<Song> queue,
+
+    /// Peaks of the current song's audio; empty until loaded or unavailable.
+    @Default(<double>[]) List<double> waveform,
     String? error,
   }) = _PlayState;
 

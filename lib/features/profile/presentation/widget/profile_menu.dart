@@ -2,10 +2,13 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:vibezone/core/routing/routes_const.dart';
 import 'package:vibezone/core/state/cubit/app_cubit.dart';
 import 'package:vibezone/core/utils/responsive.dart';
 
 import '../bloc/profile_bloc.dart';
+import 'edit_profile_sheet.dart';
 import 'language_sheet.dart';
 import 'menu_item.dart';
 import 'menu_section.dart';
@@ -29,7 +32,18 @@ class ProfileMenu extends StatelessWidget {
         if (language == null) return;
         final parts = language.code.split('_');
         appCubit.changeLocale(Locale(parts.first, parts.last));
-        bloc.add(ProfileEvent.onChangeLanguage(language.name));
+        bloc.add(ProfileEvent.onChangeLanguage(language));
+      case MenuType.editProfile:
+        final bloc = context.read<ProfileBloc>();
+        final name = await showEditProfileSheet(
+          context,
+          displayName: bloc.state.user?.displayName ?? '',
+        );
+        if (name != null) bloc.add(ProfileEvent.onUpdateName(name));
+      case MenuType.upload:
+        context.push(uploadRoute);
+      case MenuType.security:
+        context.push(securityRoute);
       default:
         log('TODO: ${item.name}');
     }

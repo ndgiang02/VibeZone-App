@@ -7,7 +7,9 @@ import '../../features/auth/presentation/forgot_password/forgot_password_screen.
 import '../../features/auth/presentation/login/login_screen.dart';
 import '../../features/auth/presentation/signup/signup_screen.dart';
 import '../../features/main/presentation/main_screen.dart';
+import '../../features/profile/presentation/security/security_screen.dart';
 import '../../features/splash/presentation/splash_screen.dart';
+import '../../features/upload/presentation/upload_page.dart';
 import 'routes_const.dart';
 
 class AppRoutes {
@@ -37,6 +39,14 @@ class AppRoutes {
               ForgotPasswordScreen(email: state.extra as String?),
         ),
         GoRoute(path: '/main', builder: (context, state) => MainScreen()),
+        GoRoute(
+          path: uploadRoute,
+          builder: (context, state) => const UploadPage(),
+        ),
+        GoRoute(
+          path: securityRoute,
+          builder: (context, state) => const SecurityScreen(),
+        ),
         GoRoute(
           path: '/play',
           pageBuilder: (context, state) => CustomTransitionPage(

@@ -23,6 +23,7 @@ enum MenuSection {
 
 enum MenuType {
   editProfile,
+  upload,
   notification,
   download,
   security,
@@ -35,6 +36,8 @@ enum MenuType {
     switch (this) {
       case MenuType.editProfile:
         return S.of(context).label_menu_edit_profile;
+      case MenuType.upload:
+        return S.of(context).label_menu_upload;
       case MenuType.notification:
         return S.of(context).label_menu_notification;
       case MenuType.download:
@@ -56,6 +59,8 @@ enum MenuType {
     switch (this) {
       case MenuType.editProfile:
         return 'assets/icons/ic_person.svg';
+      case MenuType.upload:
+        return 'assets/icons/ic_tab_upload.svg';
       case MenuType.notification:
         return 'assets/icons/ic_noti.svg';
       case MenuType.download:
@@ -76,6 +81,7 @@ enum MenuType {
   MenuSection get section {
     switch (this) {
       case MenuType.editProfile:
+      case MenuType.upload:
       case MenuType.notification:
       case MenuType.download:
       case MenuType.security:

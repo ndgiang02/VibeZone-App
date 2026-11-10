@@ -5,6 +5,7 @@ abstract class ProfileState with _$ProfileState {
   const factory ProfileState({
     @Default(false) bool isDarkMode,
     String? languageName,
+    UserModel? user,
     PageCommand? pageCommand,
   }) = _ProfileState;
 }

@@ -39,6 +39,7 @@ class _EmailInputState extends State<EmailInput> {
           initValue: state.email,
           hintText: S.of(context).hint_text_email,
           keyboardType: TextInputType.emailAddress,
+          autofillHints: const [AutofillHints.email],
           error: state.errEmail,
           prefixWidget: SvgWidget(ic: icEmail),
           onChanged: (val) => widget.bloc.add(LoginEvent.onChangeEmail(val)),

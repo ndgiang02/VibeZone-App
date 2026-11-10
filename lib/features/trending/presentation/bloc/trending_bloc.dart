@@ -12,25 +12,43 @@ class TrendingBloc extends Bloc<TrendingEvent, TrendingState> {
   final GetTrendingSongsUseCase _getTrendingSongs;
 
   TrendingBloc(this._getTrendingSongs) : super(const TrendingState()) {
-    on<_Started>((event, emit) => _load(state.period, emit));
-    on<_ChangePeriod>((event, emit) async {
-      if (event.period == state.period && state.songs.isNotEmpty) return;
-      await _load(event.period, emit);
+    on<_Started>((event, emit) async {
+      emit(state.copyWith(status: PageState.loading));
+      await _loadFirstPage(emit);
     });
+    // Keeps the current chart on screen while the pull-to-refresh spins.
+    on<_Refreshed>((event, emit) => _loadFirstPage(emit));
+    on<_LoadMore>(_onLoadMore);
   }
 
-  Future<void> _load(TrendingPeriod period, Emitter<TrendingState> emit) async {
-    emit(state.copyWith(period: period, status: PageState.loading));
-    final result = await _getTrendingSongs(period);
+  Future<void> _loadFirstPage(Emitter<TrendingState> emit) async {
+    final result = await _getTrendingSongs(1);
     result.fold(
-      (failure) => emit(
-        state.copyWith(status: PageState.error, errorMessage: failure.message),
+      (_) => emit(state.copyWith(status: PageState.error)),
+      (page) => emit(
+        TrendingState(
+          status: page.songs.isEmpty ? PageState.empty : PageState.success,
+          songs: page.songs,
+          page: 1,
+          hasMore: page.hasMore,
+        ),
       ),
-      (songs) => emit(
+    );
+  }
+
+  Future<void> _onLoadMore(_LoadMore event, Emitter<TrendingState> emit) async {
+    if (!state.hasMore || state.status != PageState.success) return;
+    emit(state.copyWith(status: PageState.loadMore));
+    final result = await _getTrendingSongs(state.page + 1);
+    result.fold(
+      // Keep what is shown; scrolling to the end again retries.
+      (_) => emit(state.copyWith(status: PageState.success)),
+      (page) => emit(
         state.copyWith(
-          status: songs.isEmpty ? PageState.empty : PageState.success,
-          songs: songs,
-          errorMessage: null,
+          status: PageState.success,
+          songs: [...state.songs, ...page.songs],
+          page: state.page + 1,
+          hasMore: page.hasMore,
         ),
       ),
     );

@@ -6,12 +6,18 @@ abstract class TrendingState with _$TrendingState {
 
   const factory TrendingState({
     @Default(PageState.init) PageState status,
-    @Default(TrendingPeriod.today) TrendingPeriod period,
     @Default(<TrendingSong>[]) List<TrendingSong> songs,
-    String? errorMessage,
+
+    /// Last page loaded (1-based); 0 before the first one.
+    @Default(0) int page,
+    @Default(false) bool hasMore,
   }) = _TrendingState;
 
-  List<TrendingSong> get topThree => songs.take(3).toList();
+  bool get isLoadingMore => status == PageState.loadMore;
 
-  List<TrendingSong> get others => songs.skip(3).toList();
+  /// The podium needs three songs; a shorter chart is shown as a plain list.
+  List<TrendingSong> get topThree =>
+      songs.length >= 3 ? songs.take(3).toList() : const [];
+
+  List<TrendingSong> get others => songs.skip(topThree.length).toList();
 }

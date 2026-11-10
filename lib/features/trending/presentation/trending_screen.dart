@@ -7,8 +7,6 @@ import 'package:vibezone/core/utils/format_utils.dart';
 import 'package:vibezone/core/utils/responsive.dart';
 import 'package:vibezone/features/player/presentation/bloc/play_bloc.dart';
 import 'package:vibezone/features/trending/domain/entities/trending_song.dart';
-import 'package:vibezone/features/trending/presentation/widget/period_tabs.dart';
-import 'package:vibezone/features/trending/presentation/widget/rank_change.dart';
 import 'package:vibezone/features/trending/presentation/widget/trending_podium.dart';
 import 'package:vibezone/injection.dart';
 
@@ -49,42 +47,63 @@ class _TrendingView extends StatelessWidget {
         bottom: false,
         child: BlocBuilder<TrendingBloc, TrendingState>(
           builder: (context, state) {
-            return CustomScrollView(
-              slivers: [
-                SliverPadding(
-                  padding: EdgeInsets.fromLTRB(
-                    Responsive.horizontalPadding(context),
-                    16,
-                    Responsive.horizontalPadding(context),
-                    0,
-                  ),
-                  sliver: SliverToBoxAdapter(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Wrap(
-                          spacing: 12,
-                          runSpacing: 12,
-                          alignment: WrapAlignment.spaceBetween,
-                          crossAxisAlignment: WrapCrossAlignment.center,
+            final bloc = context.read<TrendingBloc>();
+            return RefreshIndicator(
+              onRefresh: () async {
+                bloc.add(const TrendingEvent.refreshed());
+                await bloc.stream.firstWhere(
+                  (s) => s.status != PageState.success || s.page == 1,
+                );
+              },
+              child: NotificationListener<ScrollNotification>(
+                // Fetch the next page a little before reaching the end.
+                onNotification: (notification) {
+                  final metrics = notification.metrics;
+                  if (metrics.extentAfter < 400) {
+                    bloc.add(const TrendingEvent.loadMore());
+                  }
+                  return false;
+                },
+                child: CustomScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  slivers: [
+                    SliverPadding(
+                      padding: EdgeInsets.fromLTRB(
+                        Responsive.horizontalPadding(context),
+                        16,
+                        Responsive.horizontalPadding(context),
+                        0,
+                      ),
+                      sliver: SliverToBoxAdapter(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ConstrainedBox(
-                              constraints: const BoxConstraints(minWidth: 180),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    S.of(context).title_trending,
-                                    style: theme.textTheme.displaySmall,
+                            Wrap(
+                              spacing: 12,
+                              runSpacing: 12,
+                              alignment: WrapAlignment.spaceBetween,
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              children: [
+                                ConstrainedBox(
+                                  constraints: const BoxConstraints(
+                                    minWidth: 180,
                                   ),
-                                  Text(
-                                    S.of(context).txt_trending_subtitle,
-                                    style: theme.textTheme.bodySmall,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        S.of(context).title_trending,
+                                        style: theme.textTheme.displaySmall,
+                                      ),
+                                      Text(
+                                        S.of(context).txt_trending_subtitle,
+                                        style: theme.textTheme.bodySmall,
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            ),
-                            /*FilledButton.icon(
+                                ),
+                                /*FilledButton.icon(
                               onPressed: state.songs.isEmpty
                                   ? null
                                   : () => _play(
@@ -98,23 +117,27 @@ class _TrendingView extends StatelessWidget {
                                 foregroundColor: Colors.black,
                               ),
                             ),*/
+                              ],
+                            ),
+                            const SizedBox(height: Spacing.x4),
                           ],
                         ),
-                        const SizedBox(height: Spacing.x4),
-                        PeriodTabs(
-                          selected: state.period,
-                          onChanged: (period) => context
-                              .read<TrendingBloc>()
-                              .add(TrendingEvent.changePeriod(period)),
-                        ),
-                        const SizedBox(height: Spacing.x5),
-                      ],
+                      ),
                     ),
-                  ),
+                    ..._buildContent(context, state, activeId),
+                    if (state.isLoadingMore)
+                      const SliverToBoxAdapter(
+                        child: Padding(
+                          padding: EdgeInsets.all(16),
+                          child: Center(child: CircularProgressIndicator()),
+                        ),
+                      ),
+                    SliverToBoxAdapter(
+                      child: SizedBox(height: bottomInset + 16),
+                    ),
+                  ],
                 ),
-                ..._buildContent(context, state, activeId),
-                SliverToBoxAdapter(child: SizedBox(height: bottomInset + 16)),
-              ],
+              ),
             );
           },
         ),
@@ -143,10 +166,7 @@ class _TrendingView extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  state.errorMessage ??
-                      S.of(context).err_an_error_occurred_please_check_again,
-                ),
+                Text(S.of(context).err_an_error_occurred_please_check_again),
                 const SizedBox(height: 12),
                 FilledButton(
                   onPressed: () => context.read<TrendingBloc>().add(
@@ -157,6 +177,15 @@ class _TrendingView extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ];
+    }
+
+    if (state.status == PageState.empty) {
+      return [
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: Center(child: Text(S.of(context).txt_trending_empty)),
         ),
       ];
     }
@@ -173,7 +202,8 @@ class _TrendingView extends StatelessWidget {
           ),
         ),
       ),
-      const SliverToBoxAdapter(child: SizedBox(height: Spacing.x5)),
+      if (state.topThree.isNotEmpty)
+        const SliverToBoxAdapter(child: SizedBox(height: Spacing.x5)),
       SliverPadding(
         padding: EdgeInsets.symmetric(
           horizontal: Responsive.horizontalPadding(context),
@@ -186,19 +216,15 @@ class _TrendingView extends StatelessWidget {
               song: item.song,
               isActive: item.song.id == activeId,
               subtitle:
-                  '${item.song.artist} • ${FormatUtils.compact(item.song.plays)} ${S.of(context).txt_plays}',
+                  '${item.song.artist} • ${FormatUtils.duration(item.song.duration)}',
               leading: SizedBox(
                 width: 32,
-                child: Column(
-                  children: [
-                    Text(
-                      '${item.rank}',
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    RankChange(item: item),
-                  ],
+                child: Text(
+                  '${item.rank}',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               onTap: () => _play(context, item, state.songs),

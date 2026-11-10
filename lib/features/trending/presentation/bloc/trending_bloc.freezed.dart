@@ -55,12 +55,13 @@ extension TrendingEventPatterns on TrendingEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _ChangePeriod value)?  changePeriod,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _Refreshed value)?  refreshed,TResult Function( _LoadMore value)?  loadMore,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started(_that);case _ChangePeriod() when changePeriod != null:
-return changePeriod(_that);case _:
+return started(_that);case _Refreshed() when refreshed != null:
+return refreshed(_that);case _LoadMore() when loadMore != null:
+return loadMore(_that);case _:
   return orElse();
 
 }
@@ -78,12 +79,13 @@ return changePeriod(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _ChangePeriod value)  changePeriod,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _Refreshed value)  refreshed,required TResult Function( _LoadMore value)  loadMore,}){
 final _that = this;
 switch (_that) {
 case _Started():
-return started(_that);case _ChangePeriod():
-return changePeriod(_that);case _:
+return started(_that);case _Refreshed():
+return refreshed(_that);case _LoadMore():
+return loadMore(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -100,12 +102,13 @@ return changePeriod(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _ChangePeriod value)?  changePeriod,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _Refreshed value)?  refreshed,TResult? Function( _LoadMore value)?  loadMore,}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started(_that);case _ChangePeriod() when changePeriod != null:
-return changePeriod(_that);case _:
+return started(_that);case _Refreshed() when refreshed != null:
+return refreshed(_that);case _LoadMore() when loadMore != null:
+return loadMore(_that);case _:
   return null;
 
 }
@@ -122,11 +125,12 @@ return changePeriod(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( TrendingPeriod period)?  changePeriod,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  refreshed,TResult Function()?  loadMore,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started();case _ChangePeriod() when changePeriod != null:
-return changePeriod(_that.period);case _:
+return started();case _Refreshed() when refreshed != null:
+return refreshed();case _LoadMore() when loadMore != null:
+return loadMore();case _:
   return orElse();
 
 }
@@ -144,11 +148,12 @@ return changePeriod(_that.period);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( TrendingPeriod period)  changePeriod,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  refreshed,required TResult Function()  loadMore,}) {final _that = this;
 switch (_that) {
 case _Started():
-return started();case _ChangePeriod():
-return changePeriod(_that.period);case _:
+return started();case _Refreshed():
+return refreshed();case _LoadMore():
+return loadMore();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -165,11 +170,12 @@ return changePeriod(_that.period);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( TrendingPeriod period)?  changePeriod,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  refreshed,TResult? Function()?  loadMore,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started();case _ChangePeriod() when changePeriod != null:
-return changePeriod(_that.period);case _:
+return started();case _Refreshed() when refreshed != null:
+return refreshed();case _LoadMore() when loadMore != null:
+return loadMore();case _:
   return null;
 
 }
@@ -212,73 +218,72 @@ String toString() {
 /// @nodoc
 
 
-class _ChangePeriod implements TrendingEvent {
-  const _ChangePeriod(this.period);
+class _Refreshed implements TrendingEvent {
+  const _Refreshed();
   
 
- final  TrendingPeriod period;
 
-/// Create a copy of TrendingEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$ChangePeriodCopyWith<_ChangePeriod> get copyWith => __$ChangePeriodCopyWithImpl<_ChangePeriod>(this, _$identity);
+
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChangePeriod&&(identical(other.period, period) || other.period == period));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Refreshed);
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,period);
+int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'TrendingEvent.changePeriod(period: $period)';
+  return 'TrendingEvent.refreshed()';
 }
 
 
 }
+
+
+
 
 /// @nodoc
-abstract mixin class _$ChangePeriodCopyWith<$Res> implements $TrendingEventCopyWith<$Res> {
-  factory _$ChangePeriodCopyWith(_ChangePeriod value, $Res Function(_ChangePeriod) _then) = __$ChangePeriodCopyWithImpl;
-@useResult
-$Res call({
- TrendingPeriod period
-});
+
+
+class _LoadMore implements TrendingEvent {
+  const _LoadMore();
+  
 
 
 
 
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadMore);
 }
-/// @nodoc
-class __$ChangePeriodCopyWithImpl<$Res>
-    implements _$ChangePeriodCopyWith<$Res> {
-  __$ChangePeriodCopyWithImpl(this._self, this._then);
 
-  final _ChangePeriod _self;
-  final $Res Function(_ChangePeriod) _then;
 
-/// Create a copy of TrendingEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? period = null,}) {
-  return _then(_ChangePeriod(
-null == period ? _self.period : period // ignore: cast_nullable_to_non_nullable
-as TrendingPeriod,
-  ));
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'TrendingEvent.loadMore()';
 }
 
 
 }
+
+
+
 
 /// @nodoc
 mixin _$TrendingState {
 
- PageState get status; TrendingPeriod get period; List<TrendingSong> get songs; String? get errorMessage;
+ PageState get status; List<TrendingSong> get songs;/// Last page loaded (1-based); 0 before the first one.
+ int get page; bool get hasMore;
 /// Create a copy of TrendingState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -289,16 +294,16 @@ $TrendingStateCopyWith<TrendingState> get copyWith => _$TrendingStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TrendingState&&(identical(other.status, status) || other.status == status)&&(identical(other.period, period) || other.period == period)&&const DeepCollectionEquality().equals(other.songs, songs)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TrendingState&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other.songs, songs)&&(identical(other.page, page) || other.page == page)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,period,const DeepCollectionEquality().hash(songs),errorMessage);
+int get hashCode => Object.hash(runtimeType,status,const DeepCollectionEquality().hash(songs),page,hasMore);
 
 @override
 String toString() {
-  return 'TrendingState(status: $status, period: $period, songs: $songs, errorMessage: $errorMessage)';
+  return 'TrendingState(status: $status, songs: $songs, page: $page, hasMore: $hasMore)';
 }
 
 
@@ -309,7 +314,7 @@ abstract mixin class $TrendingStateCopyWith<$Res>  {
   factory $TrendingStateCopyWith(TrendingState value, $Res Function(TrendingState) _then) = _$TrendingStateCopyWithImpl;
 @useResult
 $Res call({
- PageState status, TrendingPeriod period, List<TrendingSong> songs, String? errorMessage
+ PageState status, List<TrendingSong> songs, int page, bool hasMore
 });
 
 
@@ -326,13 +331,13 @@ class _$TrendingStateCopyWithImpl<$Res>
 
 /// Create a copy of TrendingState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? period = null,Object? songs = null,Object? errorMessage = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? songs = null,Object? page = null,Object? hasMore = null,}) {
   return _then(_self.copyWith(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as PageState,period: null == period ? _self.period : period // ignore: cast_nullable_to_non_nullable
-as TrendingPeriod,songs: null == songs ? _self.songs : songs // ignore: cast_nullable_to_non_nullable
-as List<TrendingSong>,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
-as String?,
+as PageState,songs: null == songs ? _self.songs : songs // ignore: cast_nullable_to_non_nullable
+as List<TrendingSong>,page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+as int,hasMore: null == hasMore ? _self.hasMore : hasMore // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
@@ -417,10 +422,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( PageState status,  TrendingPeriod period,  List<TrendingSong> songs,  String? errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( PageState status,  List<TrendingSong> songs,  int page,  bool hasMore)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TrendingState() when $default != null:
-return $default(_that.status,_that.period,_that.songs,_that.errorMessage);case _:
+return $default(_that.status,_that.songs,_that.page,_that.hasMore);case _:
   return orElse();
 
 }
@@ -438,10 +443,10 @@ return $default(_that.status,_that.period,_that.songs,_that.errorMessage);case _
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( PageState status,  TrendingPeriod period,  List<TrendingSong> songs,  String? errorMessage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( PageState status,  List<TrendingSong> songs,  int page,  bool hasMore)  $default,) {final _that = this;
 switch (_that) {
 case _TrendingState():
-return $default(_that.status,_that.period,_that.songs,_that.errorMessage);case _:
+return $default(_that.status,_that.songs,_that.page,_that.hasMore);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -458,10 +463,10 @@ return $default(_that.status,_that.period,_that.songs,_that.errorMessage);case _
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( PageState status,  TrendingPeriod period,  List<TrendingSong> songs,  String? errorMessage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( PageState status,  List<TrendingSong> songs,  int page,  bool hasMore)?  $default,) {final _that = this;
 switch (_that) {
 case _TrendingState() when $default != null:
-return $default(_that.status,_that.period,_that.songs,_that.errorMessage);case _:
+return $default(_that.status,_that.songs,_that.page,_that.hasMore);case _:
   return null;
 
 }
@@ -473,11 +478,10 @@ return $default(_that.status,_that.period,_that.songs,_that.errorMessage);case _
 
 
 class _TrendingState extends TrendingState {
-  const _TrendingState({this.status = PageState.init, this.period = TrendingPeriod.today, final  List<TrendingSong> songs = const <TrendingSong>[], this.errorMessage}): _songs = songs,super._();
+  const _TrendingState({this.status = PageState.init, final  List<TrendingSong> songs = const <TrendingSong>[], this.page = 0, this.hasMore = false}): _songs = songs,super._();
   
 
 @override@JsonKey() final  PageState status;
-@override@JsonKey() final  TrendingPeriod period;
  final  List<TrendingSong> _songs;
 @override@JsonKey() List<TrendingSong> get songs {
   if (_songs is EqualUnmodifiableListView) return _songs;
@@ -485,7 +489,9 @@ class _TrendingState extends TrendingState {
   return EqualUnmodifiableListView(_songs);
 }
 
-@override final  String? errorMessage;
+/// Last page loaded (1-based); 0 before the first one.
+@override@JsonKey() final  int page;
+@override@JsonKey() final  bool hasMore;
 
 /// Create a copy of TrendingState
 /// with the given fields replaced by the non-null parameter values.
@@ -497,16 +503,16 @@ _$TrendingStateCopyWith<_TrendingState> get copyWith => __$TrendingStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TrendingState&&(identical(other.status, status) || other.status == status)&&(identical(other.period, period) || other.period == period)&&const DeepCollectionEquality().equals(other._songs, _songs)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TrendingState&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other._songs, _songs)&&(identical(other.page, page) || other.page == page)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,period,const DeepCollectionEquality().hash(_songs),errorMessage);
+int get hashCode => Object.hash(runtimeType,status,const DeepCollectionEquality().hash(_songs),page,hasMore);
 
 @override
 String toString() {
-  return 'TrendingState(status: $status, period: $period, songs: $songs, errorMessage: $errorMessage)';
+  return 'TrendingState(status: $status, songs: $songs, page: $page, hasMore: $hasMore)';
 }
 
 
@@ -517,7 +523,7 @@ abstract mixin class _$TrendingStateCopyWith<$Res> implements $TrendingStateCopy
   factory _$TrendingStateCopyWith(_TrendingState value, $Res Function(_TrendingState) _then) = __$TrendingStateCopyWithImpl;
 @override @useResult
 $Res call({
- PageState status, TrendingPeriod period, List<TrendingSong> songs, String? errorMessage
+ PageState status, List<TrendingSong> songs, int page, bool hasMore
 });
 
 
@@ -534,13 +540,13 @@ class __$TrendingStateCopyWithImpl<$Res>
 
 /// Create a copy of TrendingState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? period = null,Object? songs = null,Object? errorMessage = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? songs = null,Object? page = null,Object? hasMore = null,}) {
   return _then(_TrendingState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as PageState,period: null == period ? _self.period : period // ignore: cast_nullable_to_non_nullable
-as TrendingPeriod,songs: null == songs ? _self._songs : songs // ignore: cast_nullable_to_non_nullable
-as List<TrendingSong>,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
-as String?,
+as PageState,songs: null == songs ? _self._songs : songs // ignore: cast_nullable_to_non_nullable
+as List<TrendingSong>,page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+as int,hasMore: null == hasMore ? _self.hasMore : hasMore // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

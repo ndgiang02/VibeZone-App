@@ -10,6 +10,7 @@ class PasswordTextField extends StatefulWidget {
   final String? error;
   final ValueChanged<String> onChanged;
   final TextInputAction? textInputAction;
+  final Iterable<String>? autofillHints;
 
   const PasswordTextField({
     super.key,
@@ -17,6 +18,7 @@ class PasswordTextField extends StatefulWidget {
     this.hintText,
     this.error,
     this.textInputAction,
+    this.autofillHints = const [AutofillHints.password],
   });
 
   @override
@@ -33,6 +35,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       obscureText: _obscure,
       error: widget.error,
       textInputAction: widget.textInputAction,
+      autofillHints: widget.autofillHints,
       prefixWidget: const SvgWidget(ic: icPassword),
       icon: _obscure ? Icons.visibility : Icons.visibility_off,
       actionRight: () => setState(() => _obscure = !_obscure),

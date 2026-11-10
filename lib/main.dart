@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:vibezone/core/configs/constants/constant.dart';
 import 'package:vibezone/core/state/cubit/app_cubit.dart';
 
@@ -17,6 +18,13 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Keeps playing with the app in the background, with lock screen and
+  // notification controls. Must run before the PlayBloc creates its player.
+  await JustAudioBackground.init(
+    androidNotificationChannelId: 'com.example.vibezone.channel.audio',
+    androidNotificationChannelName: 'Playback',
+    androidNotificationOngoing: true,
+  );
   await setupLocator();
   runApp(AnnotatedRegion(value: SystemUiOverlayStyle.dark, child: MyApp()));
 }

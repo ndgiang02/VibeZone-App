@@ -23,4 +23,15 @@ class PlaylistModel extends Playlist {
       songs: songs.where((song) => ids.contains(song.id)).toList(),
     );
   }
+
+  /// From the API's `PlaylistDto`; its tracks come from a separate request.
+  factory PlaylistModel.fromApiJson(
+    Map<String, dynamic> json,
+    List<SongModel> songs,
+  ) => PlaylistModel(
+    id: json['id'] as String,
+    title: json['title'] as String,
+    description: json['description'] as String? ?? '',
+    songs: songs,
+  );
 }

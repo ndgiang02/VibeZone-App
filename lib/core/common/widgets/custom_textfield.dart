@@ -19,6 +19,7 @@ class CustomTextField extends StatefulWidget {
   final bool obscureText;
   final IconData? icon;
   final TextEditingController? ctr;
+  final Iterable<String>? autofillHints;
 
   const CustomTextField({
     super.key,
@@ -38,6 +39,7 @@ class CustomTextField extends StatefulWidget {
     this.obscureText = false,
     this.icon,
     this.ctr,
+    this.autofillHints,
   });
 
   @override
@@ -75,6 +77,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           obscureText: widget.obscureText,
           style: TextStyle(color: Colors.black),
           textInputAction: widget.textInputAction,
+          autofillHints: widget.autofillHints,
           onChanged: (val) =>
               widget.onChanged != null ? widget.onChanged!(val) : null,
           inputFormatters: widget.inputFormatters,

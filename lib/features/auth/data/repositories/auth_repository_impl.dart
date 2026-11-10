@@ -8,6 +8,8 @@ import 'package:vibezone/features/auth/data/models/user/user_model.dart';
 import 'package:vibezone/features/auth/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
+  static const _defaultLocale = 'vi';
+
   final AuthRemoteDataSource remote;
   final SessionController session;
 
@@ -20,8 +22,8 @@ class AuthRepositoryImpl implements AuthRepository {
     required bool rememberMe,
   }) async {
     try {
-      final (user, token) = await remote.login(email, password);
-      await session.saveUserInPreference(user, token);
+      final user = await remote.login(email, password);
+      await session.saveUserInPreference(user);
       if (rememberMe) {
         await session.saveRememberMe(email);
       } else {
@@ -40,7 +42,11 @@ class AuthRepositoryImpl implements AuthRepository {
     required String name,
     required String email,
     required String password,
-  }) => _guard(() => remote.register(name, email, password));
+  }) => _guard(() async {
+    final saved = await session.getSavedLocale();
+    final locale = saved == 'en' || saved == 'vi' ? saved! : _defaultLocale;
+    await remote.register(name, email, password, locale: locale);
+  });
 
   @override
   Future<Either<Failure, Unit>> sendPasswordResetEmail(String email) =>
@@ -59,6 +65,11 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, Unit>> logout() async {
+    try {
+      await remote.logout();
+    } catch (_) {
+      // The tokens are already gone locally; the server session expires.
+    }
     try {
       await session.clearSession();
       return const Right(unit);

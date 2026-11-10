@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:vibezone/core/configs/constants/errors.dart';
 import 'package:vibezone/core/errors/exceptions.dart';
 import 'package:vibezone/core/errors/failures.dart';
 import 'package:vibezone/features/trending/data/datasources/trending_remote_data_source.dart';
@@ -11,15 +12,18 @@ class TrendingRepositoryImpl implements TrendingRepository {
   TrendingRepositoryImpl(this.remote);
 
   @override
-  Future<Either<Failure, List<TrendingSong>>> getTrendingSongs(
-    TrendingPeriod period,
-  ) async {
+  Future<Either<Failure, TrendingPage>> getTrendingSongs({
+    required int page,
+    required int pageSize,
+  }) async {
     try {
-      return Right(await remote.getTrendingSongs(period));
+      return Right(
+        await remote.getTrendingSongs(page: page, pageSize: pageSize),
+      );
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
-    } catch (e) {
-      return Left(ServerFailure(e.toString()));
+    } catch (_) {
+      return const Left(ServerFailure(unknownError));
     }
   }
 }

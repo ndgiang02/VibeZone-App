@@ -137,13 +137,16 @@ class _HomeView extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: Spacing.x4),
-                    SectionHeader(title: S.of(context).title_recently_played),
-                    for (final song in data.recentlyPlayed)
-                      SongTile(
-                        song: song,
-                        isActive: song.id == activeId,
-                        onTap: () => _play(context, song, data.recentlyPlayed),
-                      ),
+                    if (data.recentlyPlayed.isNotEmpty) ...[
+                      SectionHeader(title: S.of(context).title_recently_played),
+                      for (final song in data.recentlyPlayed)
+                        SongTile(
+                          song: song,
+                          isActive: song.id == activeId,
+                          onTap: () =>
+                              _play(context, song, data.recentlyPlayed),
+                        ),
+                    ],
                   ],
                 ],
               ),
